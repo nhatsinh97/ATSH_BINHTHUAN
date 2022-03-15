@@ -93,7 +93,6 @@ void setup() {
     lcd.print("dang nap code");
     lcd.setCursor(0, 1);
     lcd.print("Progress: ");
-    //    lcd.setCursor(0, 1);
     lcd.print(progress / (total / 100));
   });
   ArduinoOTA.onError([](ota_error_t error) {
@@ -130,11 +129,7 @@ void setup() {
   lcd.print("IP address: ");
   lcd.setCursor(0, 1);
   lcd.print(WiFi.localIP());
-
-
-
 }
-
 void loop() {
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
     lcd.print("Failed! Reboot");
@@ -145,7 +140,7 @@ void loop() {
     ArduinoOTA.handle();
     gio = timer_uv / 3600;
     phut = timer_uv % 3600 / 60;
-    giay = timer_uv % 3600 % 60;//alarm
+    giay = timer_uv % 3600 % 60;
     if (timer_uv == 0) {
       delay(1000);
       ArduinoOTA.handle();
