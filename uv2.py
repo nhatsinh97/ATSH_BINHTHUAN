@@ -69,6 +69,7 @@ try:
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
 except TypeError:
-    os.system("sudo reboot")
+    #os.system("sudo reboot")
+    print("có lỗi")
 except:
     pass
