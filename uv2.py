@@ -68,6 +68,7 @@ try:
             if file == 200:
                 status = False
                 time.sleep(1)
+        # TH3: Neu check = True add data = checkout 
         if not check and (data == "checkout"):
             time.sleep(1)
             cap = cv2.VideoCapture(camout)
