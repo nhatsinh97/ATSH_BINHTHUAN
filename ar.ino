@@ -51,34 +51,7 @@ void loop()
   phut = value % 3600 / 60;
   giay = value % 3600 % 60;
   // end chuyển giây thành giờ, phút, giây
-  // start nếu data lớn hơn 0
-  if (value > 0) {
-    digitalWrite(uv, HIGH);
-    lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, d);
-    lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
-    lcd.print("   "); delay(970); value--; EEPROMWritelong(address, value); delay(5);
-    // start nếu nhấn nút sát trùng gửi data tới raspberry
-    if (gio == 1) { strcpy(gui, "90"); digitalWrite(ozon, HIGH);}
-    else{ strcpy(gui, "60"); }
-    // end gửi
-    if (phut > 30) {
-      digitalWrite(ozon, HIGH);
-    }
-    if ((gio == 0) && (phut < 30)) {
-      digitalWrite(ozon, LOW);
-    }
-  }
-  // end nếu data lớn hơn 0
-  else {
-    digitalWrite(uv, LOW); strcpy(startus, d);
-    lcd.setCursor(0 , 2); strcpy(gui, "0");
-    lcd.print("Status :"); lcd.setCursor(9 , 2);
-    lcd.print(startus); lcd.print("   ");
-    lcd.setCursor(15 , 2); lcd.print(" ");
-    lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
-    digitalWrite(nutthucpham, LOW);
-    digitalWrite(nutvatdung, LOW);
-  }
+  //-----------------------------------------------------
   if (digitalRead(thucpham) == 0) { // 60 phút
     digitalWrite(nutthucpham, HIGH); gui [10] = "60";
     strcpy(startus, a); lcd.setCursor(9 , 2);
@@ -91,21 +64,49 @@ void loop()
     lcd.print(startus);
     EEPROMWritelong(address, 5400); delay(5);
   }
-  //------------------------------------------------------
+  
   if (digitalRead(checkout) == 0) {
-    delay(100);
-    Serial.println("checkout");
-    delay(100);
-  }
-  dem++;
-  if (dem == 30) {
-    dem = 0;
-    Serial.println(gui);
-
-  }
-
+    delay(100); Serial.println("checkout"); delay(100); }
   //------------------------------------------------------
+  // start nếu data lớn hơn 0
+  if (value > 0) {
+    digitalWrite(uv, HIGH);
+    lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, d); lcd.setCursor(0 , 3); 
+    lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); 
+    lcd.print(giay); lcd.print("   "); delay(970); value--; EEPROMWritelong(address, value); delay(5);
+    // start nếu nhấn nút sát trùng gửi data tới raspberry
+    if (gio == 1) { strcpy(gui, "90"); digitalWrite(ozon, HIGH);}
+    else{ strcpy(gui, "60"); }
+    // end gửi
+    if (phut > 30) {
+      digitalWrite(ozon, HIGH);
+    }
+    if ((gio == 0) && (phut < 30)) {
+      digitalWrite(ozon, LOW);
+    }
+  }
+  // end nếu data lớn hơn 0
+  
+  //----- start nếu data bằng 0
+  else {
+    digitalWrite(uv, LOW); strcpy(startus, d);
+    lcd.setCursor(0 , 2); strcpy(gui, "0");
+    lcd.print("Status :"); lcd.setCursor(9 , 2);
+    lcd.print(startus); lcd.print("   ");
+    lcd.setCursor(15 , 2); lcd.print(" ");
+    lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
+    digitalWrite(nutthucpham, LOW);
+    digitalWrite(nutvatdung, LOW);
+  }
+ //------ end nếu data bằng 0
+  
+//------ start tăng bộ đếm để gửi data tới raspberry nếu được 30 lần thì gửi dữ liệu
+  dem++;
+  if (dem == 30) { dem = 0; Serial.println(gui); }
 }
+//------ end đếm ----------------
+
+
 /*EEPROM WRITE/READ*/
 //This function will write a 4 byte (32bit) long to the eeprom at
 //the specified address to adress + 3.
