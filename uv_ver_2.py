@@ -7,8 +7,8 @@ import base64
 import time
 import os
 
-rtsp = 'rtsp://admin:Admin123@192.168.32.203/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-camout = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
+camtrong = 'rtsp://admin:Admin123@192.168.32.203/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
+camngoai = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
 apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
@@ -38,7 +38,7 @@ try:
             if data == "90":
                 timer = '90'
 
-            cap = cv2.VideoCapture(rtsp)
+            cap = cv2.VideoCapture(camtrong)
             retval, img = cap.read()
             strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
             r = requests.post(url, data=json.dumps({
@@ -55,7 +55,7 @@ try:
         # TH2: Neu Status la True va data la 0'
         if status and data == "0":
             time.sleep(1)
-            cap = cv2.VideoCapture(rtsp)
+            cap = cv2.VideoCapture(camtrong)
             retval, img = cap.read()
             strImg64 = base64.b64encode(
                 cv2.imencode('.jpg', img)[1]).decode()
@@ -75,7 +75,7 @@ try:
         # TH3: Neu check = True add data = checkout 
         if not check and (data == "checkout"):
             time.sleep(1)
-            cap = cv2.VideoCapture(camout)
+            cap = cv2.VideoCapture(camtrong)
             retval, img = cap.read()
             strImg64 = base64.b64encode(
                 cv2.imencode('.jpg', img)[1]).decode()
