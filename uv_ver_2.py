@@ -70,6 +70,8 @@ try:
             if file == 200:
                 status = False
                 time.sleep(1)
+            else:
+                time.sleep(10)
         # TH3: Neu check = True add data = checkout 
         if not check and (data == "checkout"):
             time.sleep(1)
@@ -88,6 +90,8 @@ try:
             if file == 200:
                 check = False
                 time.sleep(1)
+            else:
+                time.sleep(10)
             
 
 except KeyboardInterrupt:
