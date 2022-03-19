@@ -1,3 +1,7 @@
+/* chương trình giao tiếp Arduino UART với raspberry  */
+/* phiên bản ver_1  */
+
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
