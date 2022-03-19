@@ -45,24 +45,22 @@ void setup()
 }
 void loop()
 {
+  // start chuyển giây thành giờ, phút, giây
   value = EEPROMReadlong(address);
   gio = value / 3600;
   phut = value % 3600 / 60;
   giay = value % 3600 % 60;
+  // end chuyển giây thành giờ, phút, giây
+  // start nếu data lớn hơn 0
   if (value > 0) {
     digitalWrite(uv, HIGH);
     lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, d);
     lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
-    lcd.print("   ");
-    delay(1000); value--;
-    EEPROMWritelong(address, value); delay(5);
-    if (gio == 1) {
-      strcpy(gui, "90");
-      digitalWrite(ozon, HIGH);
-    }
-    if (gio == 0) {
-      strcpy(gui, "60");
-    }
+    lcd.print("   "); delay(970); value--; EEPROMWritelong(address, value); delay(5);
+    // start nếu nhấn nút sát trùng gửi data tới raspberry
+    if (gio == 1) { strcpy(gui, "90"); digitalWrite(ozon, HIGH);}
+    else{ strcpy(gui, "60"); }
+    // end gửi
     if (phut > 30) {
       digitalWrite(ozon, HIGH);
     }
@@ -70,6 +68,7 @@ void loop()
       digitalWrite(ozon, LOW);
     }
   }
+  // end nếu data lớn hơn 0
   else {
     digitalWrite(uv, LOW); strcpy(startus, d);
     lcd.setCursor(0 , 2); strcpy(gui, "0");
