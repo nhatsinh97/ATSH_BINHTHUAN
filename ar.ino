@@ -48,7 +48,7 @@ void loop()
   value = EEPROMReadlong(address);
   gio = value / 3600;
   phut = value % 3600 / 60;
-  giay = value % 3600 % 60;//alarm
+  giay = value % 3600 % 60;
   if (value > 0) {
     digitalWrite(uv, HIGH);
     lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, d);
