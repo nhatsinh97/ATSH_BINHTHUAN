@@ -29,15 +29,12 @@ void setup()
   Serial.begin(115200);
   lcd.backlight();
   lcd.setCursor(0 , 0);
-  lcd.print("  NGUYEN NHAT SINH"); lcd.setCursor(0 , 2); lcd.print("  PHONG UV TU DONG"); delay(50);
-  lcd.clear();
-  lcd.setCursor(0 , 0);
+  lcd.print("  NGUYEN NHAT SINH"); lcd.setCursor(0 , 2); lcd.print("  PHONG UV TU DONG"); delay(500);
+  lcd.clear();lcd.setCursor(0 , 0);
   lcd.print("   SMART UV OZONE"); lcd.setCursor(0 , 1); lcd.print("   Farm Binh Thuan");
   lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, e);
   lcd.print(startus); lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3);
   lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
-  /* cài đặt thời gian cho module */
-  // setTime(00, 47, 00, 7, 5, 2, 22); // 12:30:45 CN 08-02-2015
   pinMode(thucpham, INPUT_PULLUP); pinMode(vatdung, INPUT_PULLUP);
   digitalWrite(thucpham, HIGH); digitalWrite(vatdung, HIGH);
   pinMode(checkout, INPUT_PULLUP);
@@ -48,7 +45,6 @@ void setup()
 }
 void loop()
 {
-
   value = EEPROMReadlong(address);
   gio = value / 3600;
   phut = value % 3600 / 60;
