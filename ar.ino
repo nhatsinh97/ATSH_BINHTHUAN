@@ -5,14 +5,15 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 int nutthucpham = 7;
 int nutvatdung = 8;
+int checkout = A0;
 int thucpham = A1;
 int vatdung = A2;
 int uv = 11, ozon = 12;
-char a[100] = "on 60";
-char e[100] = "backup";
-char b[100] = "on 90";
-char d[100] = "off";
-char startus[100] = "off";
+char a[100] = "ON 60";
+char e[100] = "BACKUP";
+char b[100] = "ON 90";
+char d[100] = "OFF";
+char startus[100] = "OFF";
 unsigned int address = 0;
 //byte value;
 long value;
@@ -20,7 +21,7 @@ int dem = 0;
 int gio = 0;
 int phut = 0;
 int giay = 0;
-char gui[10] = "0";
+char gui[10] = "1";
 void setup()
 {
   Wire.begin();
@@ -33,12 +34,13 @@ void setup()
   lcd.setCursor(0 , 0);
   lcd.print("   SMART UV OZONE"); lcd.setCursor(0 , 1); lcd.print("   Farm Binh Thuan");
   lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, e);
-  lcd.print(startus); lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); 
+  lcd.print(startus); lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3);
   lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
   /* cài đặt thời gian cho module */
   // setTime(00, 47, 00, 7, 5, 2, 22); // 12:30:45 CN 08-02-2015
   pinMode(thucpham, INPUT_PULLUP); pinMode(vatdung, INPUT_PULLUP);
   digitalWrite(thucpham, HIGH); digitalWrite(vatdung, HIGH);
+  pinMode(checkout, INPUT_PULLUP);
   pinMode(uv, OUTPUT); digitalWrite(uv, LOW);
   pinMode(ozon, OUTPUT); digitalWrite(ozon, LOW);
   pinMode(nutthucpham, OUTPUT); digitalWrite(nutthucpham, LOW);
@@ -46,40 +48,35 @@ void setup()
 }
 void loop()
 {
-  dem++;
-//  Serial.println(value);
-  if (dem == 10){
-    dem = 0;
-    Serial.println(gui);
-  }
+
   value = EEPROMReadlong(address);
   gio = value / 3600;
   phut = value % 3600 / 60;
   giay = value % 3600 % 60;//alarm
   if (value > 0) {
-    digitalWrite(uv, HIGH); 
+    digitalWrite(uv, HIGH);
     lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, d);
     lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3); lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
     lcd.print("   ");
-    delay(1000);value--;
+    delay(1000); value--;
     EEPROMWritelong(address, value); delay(5);
-    if (gio == 1){
+    if (gio == 1) {
       strcpy(gui, "90");
       digitalWrite(ozon, HIGH);
     }
-    if (gio == 0){
+    if (gio == 0) {
       strcpy(gui, "60");
     }
     if (phut > 30) {
       digitalWrite(ozon, HIGH);
     }
-    if ((gio == 0)&& (phut < 30)){
+    if ((gio == 0) && (phut < 30)) {
       digitalWrite(ozon, LOW);
     }
   }
   else {
     digitalWrite(uv, LOW); strcpy(startus, d);
-    lcd.setCursor(0 , 2);strcpy(gui, "0");
+    lcd.setCursor(0 , 2); strcpy(gui, "0");
     lcd.print("Status :"); lcd.setCursor(9 , 2);
     lcd.print(startus); lcd.print("   ");
     lcd.setCursor(15 , 2); lcd.print(" ");
@@ -88,22 +85,31 @@ void loop()
     digitalWrite(nutvatdung, LOW);
   }
   if (digitalRead(thucpham) == 0) { // 60 phút
-    digitalWrite(nutthucpham, HIGH);gui [10] = "60";
+    digitalWrite(nutthucpham, HIGH); gui [10] = "60";
     strcpy(startus, a); lcd.setCursor(9 , 2);
     lcd.print(startus);
     EEPROMWritelong(address, 3600); delay(5);
   }
   if (digitalRead(vatdung) == 0) { // 90 phút
-    digitalWrite(nutvatdung, HIGH);gui [10] = "90";
+    digitalWrite(nutvatdung, HIGH); gui [10] = "90";
     strcpy(startus, b); lcd.setCursor(9 , 2);
     lcd.print(startus);
     EEPROMWritelong(address, 5400); delay(5);
   }
-//------------------------------------------------------
+  //------------------------------------------------------
+  if (digitalRead(checkout) == 0) {
+    delay(100);
+    Serial.println("checkout");
+    delay(100);
+  }
+  dem++;
+  if (dem == 30) {
+    dem = 0;
+    Serial.println(gui);
 
+  }
 
-
-//------------------------------------------------------ 
+  //------------------------------------------------------
 }
 /*EEPROM WRITE/READ*/
 //This function will write a 4 byte (32bit) long to the eeprom at
