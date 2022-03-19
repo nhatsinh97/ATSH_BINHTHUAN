@@ -1,3 +1,4 @@
+# giao tiếp raspberry với server
 import serial
 import cv2
 import requests
@@ -5,7 +6,7 @@ import json
 import base64
 import time
 import os
-time.sleep(5)
+
 rtsp = 'rtsp://admin:Admin123@192.168.32.203/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 camout = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
@@ -14,6 +15,7 @@ mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 timer = '0'
 status = False
 check = False
+time.sleep(10)
 # Khai bao chi tiet cac thuoc tinh cua Port noi tiep
 r = requests.post(apitimer, data=json.dumps(
     {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
