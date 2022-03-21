@@ -194,7 +194,7 @@ def main():
         required=False,
         default='libs/efficientdet_lite0.tflite')
     parser.add_argument(
-        '--cameraId', help='Id of camera.', required=False, type=int, default=rtsp)
+        '--cameraId', help='Id of camera.', required=False, type=str, default=rtsp)
     parser.add_argument(
         '--frameWidth',
         help='Width of frame to capture from camera.',
