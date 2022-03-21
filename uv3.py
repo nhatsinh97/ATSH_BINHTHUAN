@@ -44,6 +44,9 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
             time.sleep(1)
         ser = serial.Serial(port='/dev/ttyS0', baudrate=115200, parity=serial.PARITY_NONE,
                             stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
+        ## Test on local
+        # time_countdown = 40
+        # status = True
 
         # Variables to calculate FPS
         counter, fps = 0, 0
@@ -75,7 +78,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
             data = s.decode()  # Giai ma chuoi du lieu
             data = data.rstrip()  # Loai bo “\r\n” o cuoi chuoi du lieu
             data = data.rstrip()
-            TH1: Neu Status la False va data la 90' hoac 60'
+            # TH1: Neu Status la False va data la 90' hoac 60'
             if not status and (data == "90" or data == "60"):
                 timer = '60'
                 if data == "90":
@@ -117,6 +120,8 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
                         time.sleep(1)
                 if time_countdown > 0:
                     # Continuously capture images from the camera and run inference
+                    count_human_defection = 0
+                    save_human_defection = False
                     while cap_detect.isOpened():
                         success, image = cap_detect.read()
                         if not success:
@@ -129,7 +134,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
 
                         # Run object detection estimation using the model.
                         detections = detector.detect(image)
-
+                        
                         # Draw keypoints and edges on input image
                         image, is_person = visualize(image, detections)
 
@@ -148,10 +153,27 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
                         # Stop the program if the ESC key is pressed.
                         if cv2.waitKey(1) == 27:
                             break
-                        if is_person:
+                        if is_person and not save_human_defection:
+                            time.sleep(5)
                             # cv2.imshow('Warning person!', image)
-                            print('=========Warning person=======')
-                            break
+                            save_human_defection = True
+                            count_human_defection += 1
+                            print('=========Warning person=======', count_human_defection)
+                            # cv2.imwrite('human_detection_%d.jpg' % count_human_defection, image)
+                            strImg64 = base64.b64encode(cv2.imencode('.jpg', image)[1]).decode()
+                            r = requests.post(url, data=json.dumps({
+                                "mac_address": mac_address,
+                                "action_name": 'HUMAN_DETECT',
+                                "timer": '',
+                                "img": strImg64
+                            }), headers={
+                                'Content-type': 'application/json', 'Accept': 'text/plain'})
+                            file = r.json()
+                            if file == 200:
+                                status = True
+                                time.sleep(1)
+                        elif not is_person and save_human_defection:
+                            save_human_defection = False
                         # else:
                         #     cv2.imshow('object_detector', image)
                     # cap_detect.release()
