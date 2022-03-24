@@ -4,8 +4,7 @@
 ### Install some libs from requirements.txt
 ### cài đặt opencv python
 ```
-pip install opencv-python
-pip install opencv-contrib-python
+
 ```
 ```
 pip install -r requirements.txt
