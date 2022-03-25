@@ -18,7 +18,7 @@ apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 
 
-def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
+def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
     """Continuously run inference on images acquired from the camera.
 
@@ -200,6 +200,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
             
     except KeyboardInterrupt:
         ser.close()  # Dong Port noi tiep
+        # print("có lỗi")
     except TypeError:
         #os.system("sudo reboot")
         print("có lỗi")
@@ -245,7 +246,7 @@ def main():
     # Set time is 5s
     time.sleep(5)
 
-    run(args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
+    run(args.model, args.cameraId, args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
 
 
