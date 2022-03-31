@@ -157,9 +157,8 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                     cap_detect = cv2.VideoCapture(camera_id)
                     cap_detect.set(cv2.CAP_PROP_FRAME_WIDTH, width)
                     cap_detect.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-                    if not (cap_detect.isOpened()):
+                    if not cap_detect.isOpened():
                         print("Could not open video device")
-                        break
                     while cap_detect.isOpened():
                         success, image = cap_detect.read()
                         # print('=========is_valid_image(noise1)=======', image and is_valid_image(image))
@@ -216,7 +215,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                                     save_human_defection = False
                                 # cv2.imshow('object_detector', image)
                         else:
-                            break
+                            print("Could not read image!")
                     
                     cap_detect.release()
                     cv2.destroyAllWindows()
