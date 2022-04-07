@@ -28,22 +28,21 @@ def visualize(
   """
   is_person = False
   for detection in detections:
-    # Draw bounding_box
-    start_point = detection.bounding_box.left, detection.bounding_box.top
-    end_point = detection.bounding_box.right, detection.bounding_box.bottom
-    cv2.rectangle(image, start_point, end_point, _TEXT_COLOR, 3)
-
     # Draw label and score
     category = detection.categories[0]
     class_name = category.label
-    probability = round(category.score, 2)
-    result_text = class_name + ' (' + str(probability) + ')'
-    text_location = (_MARGIN + detection.bounding_box.left,
-                     _MARGIN + _ROW_SIZE + detection.bounding_box.top)
-    cv2.putText(image, result_text, text_location, cv2.FONT_HERSHEY_PLAIN,
-                _FONT_SIZE, _TEXT_COLOR, _FONT_THICKNESS)
     if class_name == 'person':
       is_person = True
+      # Draw bounding_box
+      start_point = detection.bounding_box.left, detection.bounding_box.top
+      end_point = detection.bounding_box.right, detection.bounding_box.bottom
+      cv2.rectangle(image, start_point, end_point, _TEXT_COLOR, 3)
+      probability = round(category.score, 2)
+      result_text = class_name + ' (' + str(probability) + ')'
+      text_location = (_MARGIN + detection.bounding_box.left,
+                      _MARGIN + _ROW_SIZE + detection.bounding_box.top)
+      cv2.putText(image, result_text, text_location, cv2.FONT_HERSHEY_PLAIN,
+                  _FONT_SIZE, _TEXT_COLOR, _FONT_THICKNESS)
       break
 
   return image, is_person
