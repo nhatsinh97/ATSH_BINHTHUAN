@@ -18,15 +18,15 @@ from libs.object_detector import ObjectDetector
 from libs.object_detector import ObjectDetectorOptions
 from libs.utils import visualize
 import numpy as np
-rtsp = 'rtsp://admin:Admin123@192.168.32.203/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
+rtsp = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 # rtsp = 'rtsp://admin:Admin123@192.168.32.205:554/Streaming/Channels/102'
 # rtsp = 'rtsp://admin:Admin123@192.168.32.201/cam/realmonitor?channel=2&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 # rtsp = PiCamera()
 # rtsp.start_preview()
 # rtsp = 0
 camout = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
-apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
+url = 'http://172.17.128.50:8089/api/Farm/postbiohistory'
+apitimer = 'http://172.17.128.50:8089/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 
 def temperature_of_raspberry_pi():
@@ -112,8 +112,8 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
             data = s.decode()  # Giai ma chuoi du lieu
             data = data.rstrip()  # Loai bo “\r\n” o cuoi chuoi du lieu
             data = data.rstrip()
-            log.info("==temperature=======%s=", temperature_of_raspberry_pi())
-            log.info("==data===get from MACH DIEN====%s=", data)
+            log.info("==temperature=====%s=", temperature_of_raspberry_pi())
+            log.info("==data===get from MACH DIEN===%s=", data)
             log.info("==status======%s=", str(status))
             # print(data)
             # TH1: Neu Status la False va data la 90' hoac 60'
@@ -143,7 +143,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
             #     # va data la 0'
             if status:
                 if data == "0":
-                    # print("=====Lenh end============")
+                    log.info("=====Lenh end============")
                     time.sleep(1)
                     cap = cv2.VideoCapture(rtsp)
                     retval, img = cap.read()
@@ -224,6 +224,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                                     }), headers={
                                         'Content-type': 'application/json', 'Accept': 'text/plain'})
                                     file = r.json()
+                                    log.info("====gửi data=======")
                                     if file == 200:
                                         status = True
                                         time.sleep(1)
@@ -311,7 +312,7 @@ def main():
         default=False)
     args = parser.parse_args()
     # Set time is 5s
-    time.sleep(5)
+    time.sleep(10)
 
     run(args.model, args.cameraId, args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
