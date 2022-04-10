@@ -11,7 +11,7 @@ import serial
 # from picamera import PiCamera
 # from picamera.array import PiRGBArray
 import logging
-# from systemd.journal import JournalHandler
+from systemd.journal import JournalHandler
 import cv2
 import json
 import base64
@@ -34,15 +34,17 @@ rtsp = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=0
 # rtsp.start_preview()
 # rtsp = 0
 camout = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
-apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
-mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
+# url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
+# apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
+url = 'http://172.17.128.50:8089/api/Farm/postbiohistory'
+apitimer = 'http://172.17.128.50:8089/api/Farm/getcountdownsecond'
+mac_address = "6c:1c:71:5c:9b:31"   # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 
 NVR_URL = 'http://192.168.32.205'
 NVR_USR = 'admin'
 NVR_PASS = 'Admin123'
 
-urlAlertStream = NVR_URL + '/ISAPI/Event/notification/alertStream'
+urlAlertStream = NVR_URL + '/ISAPI/Event/notification/p'
 urlPicture = NVR_URL + '/ISAPI/Streaming/channels/%d/picture'
 parse_string = ''
 start_event = False
@@ -58,8 +60,6 @@ DEFAULT_HEADERS = {
 hik_request = requests.Session()
 hik_request.auth = HTTPDigestAuth(NVR_USR, NVR_PASS)
 hik_request.headers.update(DEFAULT_HEADERS)
-
-
 
 def temperature_of_raspberry_pi():
     cpu_temp = os.popen("vcgencmd measure_temp").readline()
@@ -81,6 +81,7 @@ def is_valid_image(image):
     return s_perc > s_thr
 
 def callHik(start_event=False, parse_string='', status=False, count=0):
+    print("callHik")
     stream = hik_request.get(urlAlertStream, stream=True, timeout=(5, 60), verify=False)
     if stream.status_code != requests.codes.ok:
         print("Can't connect to the stream!")
@@ -89,7 +90,7 @@ def callHik(start_event=False, parse_string='', status=False, count=0):
         # fail_count = 0
         human_detected = False
         # count = 1
-        print('Connection successful to: ' + NVR_URL)
+        log.info('Connection successful to: ' + NVR_URL)
         for line in stream.iter_lines():
             # filter out keep-alive new lines
             if line:
@@ -173,6 +174,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
     num_threads: The number of CPU threads to run the model.
     enable_edgetpu: True/False whether the model is a EdgeTPU model.
     """
+    print("run")
     try:
         timer = '0'
         status = False
@@ -181,13 +183,14 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
         r = requests.post(apitimer, data=json.dumps(
             {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
         time_countdown = r.json()
+        print("time_countdown" + str(time_countdown))
         if time_countdown > 0:
             status = True
             check = True
             time.sleep(1)
         ser = serial.Serial(port='/dev/ttyS0', baudrate=115200, parity=serial.PARITY_NONE,
                             stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
-
+        print("run---ser")
         # Variables to calculate FPS
         counter, fps = 0, 0
         start_time = time.time()
@@ -213,7 +216,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
             # Getting loadover15 minutes
             load1, load5, load15 = psutil.getloadavg()
             cpu_usage = (load15/os.cpu_count()) * 100
-            # print("The CPU usage is : ", cpu_usage)
+            print("The CPU usage is : ", cpu_usage)
             # Getting % usage of virtual_memory ( 3rd field)
             # print('RAM memory % used:', psutil.virtual_memory()[2])
             # print(temperature_of_raspberry_pi())
@@ -302,8 +305,6 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                     check = False
                     time.sleep(1)
             #___________________________________________
-
-        
 
     except KeyboardInterrupt:
         ser.close()  # Dong Port noi tiep

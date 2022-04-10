@@ -8,8 +8,8 @@ import os
 time.sleep(5)
 rtsp = 'rtsp://admin:Admin123@192.168.32.203/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 camout = 'rtsp://admin:Admin123@192.168.32.204/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-url = 'http://172.16.128.41:8089/api/Farm/postbiohistory'
-apitimer = 'http://172.16.128.41:8089/api/Farm/getcountdownsecond'
+url = 'http://172.17.128.50:8089/api/Farm/postbiohistory'
+apitimer = 'http://172.17.128.50:8089/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 timer = '0'
 status = False
