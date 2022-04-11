@@ -1,51 +1,38 @@
+/* Chương trình điều khiển phòng sát trùng sử dụng Arduino Nano */
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
-// Set the LCD address to 0x27 for a 16 chars and 2 line display
 LiquidCrystal_I2C lcd(0x27, 20, 4);
-int nutthucpham = 7;
-int nutvatdung = 8;
-int checkout = A0;
-int thucpham = A1;
-int vatdung = A2;
-int check = 0;
-int uv = 11, ozon = 12;
+/* Start khai báo các biến khi khởi động */
+int nutthucpham = 7, nutvatdung = 8, checkout = A0, thucpham = A1, vatdung = A2, check = 0, uv = 11, ozon = 12;
+unsigned int address = 0; long value; int dem = 0, gio = 0, phut = 0, giay = 0;
 char a[100]       = "ON 60 ";
 char e[100]       = "BACKUP";
 char b[100]       = "ON 90 ";
 char d[100]       = " OFF  ";
 char startus[100] = " OFF  ";
-unsigned int address = 0;
-//byte value;
-long value;
-int dem = 0;
-int gio = 0;
-int phut = 0;
-int giay = 0;
-char gui[10] = "1";
+char gui[10]      = "1";
+/* End khai báo các biến khi khởi động */
 void setup()
 {
+  Serial.begin(115200);
   Wire.begin();
   lcd.init();
-  Serial.begin(115200);
   lcd.backlight();
-  lcd.setCursor(0 , 0);
-  lcd.print("  NGUYEN NHAT SINH"); lcd.setCursor(0 , 2); lcd.print("  PHONG UV TU DONG"); delay(50);
-  lcd.clear();
-  lcd.setCursor(0 , 0);
+  lcd.print("  PHONG UV TU DONG"); lcd.setCursor(0 , 2); lcd.print("  Ver: 1.0"); delay(2000); lcd.clear();
   lcd.print("   SMART UV OZONE"); lcd.setCursor(0 , 1); lcd.print("   Farm Binh Thuan");
-  lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, e);
-  lcd.print(startus); lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3);
-  lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
-  /* cài đặt thời gian cho module */
-  // setTime(00, 47, 00, 7, 5, 2, 22); // 12:30:45 CN 08-02-2015
+  lcd.setCursor(0 , 2); lcd.print("Status :"); lcd.setCursor(9 , 2); strcpy(startus, e); lcd.print(startus);
+  lcd.setCursor(0 , 3); lcd.print("Time   :"); lcd.setCursor(9 , 3);
+  lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay); lcd.print("  ");
+  /* Start khai báo các chân I/O input và output */
   pinMode(thucpham, INPUT_PULLUP); pinMode(vatdung, INPUT_PULLUP);
-  digitalWrite(thucpham, HIGH); digitalWrite(vatdung, HIGH);
+  digitalWrite(thucpham, HIGH)   ; digitalWrite(vatdung, HIGH)   ;
   pinMode(checkout, INPUT_PULLUP);
   pinMode(uv, OUTPUT); digitalWrite(uv, LOW);
   pinMode(ozon, OUTPUT); digitalWrite(ozon, LOW);
   pinMode(nutthucpham, OUTPUT); digitalWrite(nutthucpham, LOW);
   pinMode(nutvatdung, OUTPUT); digitalWrite(nutvatdung, LOW);
+  /* End khai báo các chân I/O input và output */
 }
 void loop()
 {
@@ -63,7 +50,7 @@ void loop()
   }
 
   if (digitalRead(checkout) == 0) {
-    Serial.println("checkout"); delay(1000);
+    Serial.println("checkout"); delay(200);
     delaycheck;
   }
   //----------------------------------------
@@ -103,7 +90,6 @@ void loop()
     lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
     digitalWrite(nutthucpham, LOW); digitalWrite(nutvatdung, LOW);
   }
-  //------------------------------------------------------
 
   dem++;
   if (dem == 30) {
@@ -112,14 +98,17 @@ void loop()
 
   }
 }
-  void delaycheck() {
-    for (check = 1; check <= 100 ; check++) {
-      if (digitalRead(checkout) == 1) {
-        break;
-      }
+/* Start Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
+void delaycheck() {
+  for (check = 1; check <= 100 ; check++) {
+    delay(200);
+    if (digitalRead(checkout) == 1) {
+      break;
     }
   }
-//--------------------------------------------------------
+}
+/* End Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
+
 /*EEPROM WRITE/READ*/
 //This function will write a 4 byte (32bit) long to the eeprom at
 //the specified address to adress + 3.
