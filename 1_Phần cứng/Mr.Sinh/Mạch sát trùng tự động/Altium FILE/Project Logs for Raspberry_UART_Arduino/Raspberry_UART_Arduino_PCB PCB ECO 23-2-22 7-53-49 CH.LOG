@@ -1,0 +1,628 @@
+Added Component: Designator=Arduino NANO 1(ARDUINO NANO)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Module"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "30"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Arduino Nano 3.0 328 Mini CH340"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=C1(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C2(tu hoa 8mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T? c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH006550"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? Hóa 470uF 16V 8x11MM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C3(tu hoa 8mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T? c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH006550"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? Hóa 470uF 16V 8x11MM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C4(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C5(tu hoa 6.5mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T? c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? Hóa 220uF 16V 7x11MM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C6(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C7(tu hoa 6.5mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T? c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? Hóa 220uF 16V 7x11MM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C8(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C9(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C10(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C11(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C12(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C13(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=C14(Tu gom)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "T?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "T? G?m 104 100nF 50V (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=D1(Diode Cau)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Diode"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Diode C?u 3A 700V KBP307"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=D2(DIODE 2A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Diode"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "1N5822 DO-210AD Diode Schottky 3A 40V (DIP)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=D3(DIODE 1A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Diode"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Diode 1N4007 1A (DIP) (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=D4(DIODE 1A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Diode"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Diode 1N4007 1A (DIP) (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=D5(DIODE 1A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Diode"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Diode 1N4007 1A (DIP) (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=F1(RUEF400)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "C?u chì t? ph?c h?i"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "C?u Chì T? Ph?c H?i 3A 30V DIP RUEF300"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=H1(Jump 4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH001164"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Jump Ðon Ð?c 2.0MM 1x40P Th?ng"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=JDC 1(DC 5.5)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH006571"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Jack DC5.5x2.5MM DC5525 (5 chi?c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=L1(100uH_3A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Cu?n C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH001797"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Cu?n C?m 100UH 3A LM2576"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=L2(100uH_3A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Cu?n C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Cu?n C?m 33uH 3A LM2576"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=LED1(LED 3mm Do)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "LED"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH003892"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Led 3MM Ph? Ð? (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=LED2(LED 3MM X LA)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "LED"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH001054"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Led 3MM Ph? Xanh (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=LED3(LED 3MM X LA)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "LED"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH001054"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Led 3MM Ph? Xanh (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=LED4(LED 3MM X LA)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "LED"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH001054"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Led 3MM Ph? Xanh (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=O1(PC817 DIP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Opto Quang"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000638"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "EL817 DIP4 OPTO (Thay Th? PC817 DIP)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=O2(PC817 DIP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Opto Quang"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000638"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "EL817 DIP4 OPTO (Thay Th? PC817 DIP)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=O3(PC817 DIP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Opto Quang"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000638"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "EL817 DIP4 OPTO (Thay Th? PC817 DIP)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=P1(CON 2KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000987"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 2 KF301-2P 5.08MM Xanh Duong (5 chi?c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=P2(CON 2KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000987"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 2 KF301-2P 5.08MM Xanh Duong (5 chi?c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=P3(CON 2KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000987"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 2 KF301-2P 5.08MM Xanh Duong (5 chi?c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=P4(CON 3KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000986"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 3 KF301-3P 5.08MM Xanh Duong"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=P5(CON 3KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000986"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 3 KF301-3P 5.08MM Xanh Duong"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=P6(CON 3KF 301)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Connector"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000986"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "CON 3 KF301-3P 5.08MM Xanh Duong"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=PI 1(RASPBERRY PI 4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Module"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "shoppe.vn"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Raspberry Pi 4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Cái"; VariantName = "[No Variations]"
+Added Component: Designator=R1(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 560R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R2(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 560R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R3(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 560R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R4(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 560R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R5(Tro Vach 1/2W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? 5% 1/2W 1K (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R6(Tro Vach 1/2W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? 5% 1/2W 1K (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R7(Tro Vach 1/2W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? 5% 1/2W 1K (10c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=RL1(RELAY 5P)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Relay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH009374"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Relay 5V10A SRD-05VDC-SL-C Chính Hãng"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=RL2(RELAY 5P)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Relay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH009374"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Relay 5V10A SRD-05VDC-SL-C Chính Hãng"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=RL3(RELAY 5P)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Relay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH009374"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Relay 5V10A SRD-05VDC-SL-C Chính Hãng"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=U1(TO-220)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "IC BUCK"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "LM2596T-5.0V BUCK 5V 3A TO220-5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=U2(TO-92)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Trans NPN"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "C1815 TO92 TRANS NPN 0.15A 50V (DIP) (5c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=U3(TO-92)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Trans NPN"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "C1815 TO92 TRANS NPN 0.15A 50V (DIP) (5c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=U4(TO-92)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Trans NPN"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "C1815 TO92 TRANS NPN 0.15A 50V (DIP) (5c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3.3v Pin=PI 1-17
+Added Net: Name=3.3v
+Added Pin To Net: NetName=5v Pin=Arduino NANO 1-15
+Added Pin To Net: NetName=5v Pin=C1-1
+Added Pin To Net: NetName=5v Pin=C4-1
+Added Pin To Net: NetName=5v Pin=C7-1
+Added Pin To Net: NetName=5v Pin=C8-1
+Added Pin To Net: NetName=5v Pin=C12-1
+Added Pin To Net: NetName=5v Pin=C13-1
+Added Pin To Net: NetName=5v Pin=C14-1
+Added Pin To Net: NetName=5v Pin=D3-2
+Added Pin To Net: NetName=5v Pin=D4-2
+Added Pin To Net: NetName=5v Pin=D5-2
+Added Pin To Net: NetName=5v Pin=H1-1
+Added Pin To Net: NetName=5v Pin=L2-2
+Added Pin To Net: NetName=5v Pin=O1-4
+Added Pin To Net: NetName=5v Pin=O2-4
+Added Pin To Net: NetName=5v Pin=O3-4
+Added Pin To Net: NetName=5v Pin=PI 1-2
+Added Pin To Net: NetName=5v Pin=PI 1-4
+Added Pin To Net: NetName=5v Pin=R1-1
+Added Pin To Net: NetName=5v Pin=RL1-5
+Added Pin To Net: NetName=5v Pin=RL2-5
+Added Pin To Net: NetName=5v Pin=RL3-5
+Added Net: Name=5v
+Added Pin To Net: NetName=GND Pin=Arduino NANO 1-14
+Added Pin To Net: NetName=GND Pin=Arduino NANO 1-19
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=GND Pin=C3-2
+Added Pin To Net: NetName=GND Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=GND Pin=C7-2
+Added Pin To Net: NetName=GND Pin=C8-2
+Added Pin To Net: NetName=GND Pin=C9-2
+Added Pin To Net: NetName=GND Pin=C10-2
+Added Pin To Net: NetName=GND Pin=C11-2
+Added Pin To Net: NetName=GND Pin=D1-4
+Added Pin To Net: NetName=GND Pin=D2-1
+Added Pin To Net: NetName=GND Pin=H1-2
+Added Pin To Net: NetName=GND Pin=JDC 1-2
+Added Pin To Net: NetName=GND Pin=LED1-2
+Added Pin To Net: NetName=GND Pin=O1-2
+Added Pin To Net: NetName=GND Pin=O2-2
+Added Pin To Net: NetName=GND Pin=O3-2
+Added Pin To Net: NetName=GND Pin=PI 1-6
+Added Pin To Net: NetName=GND Pin=PI 1-9
+Added Pin To Net: NetName=GND Pin=PI 1-14
+Added Pin To Net: NetName=GND Pin=PI 1-20
+Added Pin To Net: NetName=GND Pin=PI 1-25
+Added Pin To Net: NetName=GND Pin=PI 1-30
+Added Pin To Net: NetName=GND Pin=PI 1-34
+Added Pin To Net: NetName=GND Pin=PI 1-39
+Added Pin To Net: NetName=GND Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U2-3
+Added Pin To Net: NetName=GND Pin=U3-3
+Added Pin To Net: NetName=GND Pin=U4-3
+Added Net: Name=GND
+Added Pin To Net: NetName=NetArduino NANO 1_1 Pin=Arduino NANO 1-1
+Added Pin To Net: NetName=NetArduino NANO 1_1 Pin=LED4-1
+Added Net: Name=NetArduino NANO 1_1
+Added Pin To Net: NetName=NetArduino NANO 1_4 Pin=Arduino NANO 1-4
+Added Net: Name=NetArduino NANO 1_4
+Added Pin To Net: NetName=NetArduino NANO 1_5 Pin=Arduino NANO 1-5
+Added Pin To Net: NetName=NetArduino NANO 1_5 Pin=P2-2
+Added Net: Name=NetArduino NANO 1_5
+Added Pin To Net: NetName=NetArduino NANO 1_6 Pin=Arduino NANO 1-6
+Added Pin To Net: NetName=NetArduino NANO 1_6 Pin=P2-1
+Added Net: Name=NetArduino NANO 1_6
+Added Pin To Net: NetName=NetArduino NANO 1_7 Pin=Arduino NANO 1-7
+Added Pin To Net: NetName=NetArduino NANO 1_7 Pin=P3-2
+Added Net: Name=NetArduino NANO 1_7
+Added Pin To Net: NetName=NetArduino NANO 1_8 Pin=Arduino NANO 1-8
+Added Pin To Net: NetName=NetArduino NANO 1_8 Pin=H1-3
+Added Net: Name=NetArduino NANO 1_8
+Added Pin To Net: NetName=NetArduino NANO 1_9 Pin=Arduino NANO 1-9
+Added Pin To Net: NetName=NetArduino NANO 1_9 Pin=H1-4
+Added Net: Name=NetArduino NANO 1_9
+Added Pin To Net: NetName=NetArduino NANO 1_16 Pin=Arduino NANO 1-16
+Added Pin To Net: NetName=NetArduino NANO 1_16 Pin=PI 1-10
+Added Net: Name=NetArduino NANO 1_16
+Added Pin To Net: NetName=NetArduino NANO 1_17 Pin=Arduino NANO 1-17
+Added Pin To Net: NetName=NetArduino NANO 1_17 Pin=PI 1-8
+Added Net: Name=NetArduino NANO 1_17
+Added Pin To Net: NetName=NetArduino NANO 1_29 Pin=Arduino NANO 1-29
+Added Pin To Net: NetName=NetArduino NANO 1_29 Pin=LED2-1
+Added Net: Name=NetArduino NANO 1_29
+Added Pin To Net: NetName=NetArduino NANO 1_30 Pin=Arduino NANO 1-30
+Added Net: Name=NetArduino NANO 1_30
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=NetC2_1 Pin=D1-1
+Added Pin To Net: NetName=NetC2_1 Pin=L1-1
+Added Net: Name=NetC2_1
+Added Pin To Net: NetName=NetC5_1 Pin=C5-1
+Added Pin To Net: NetName=NetC5_1 Pin=C6-1
+Added Pin To Net: NetName=NetC5_1 Pin=F1-2
+Added Pin To Net: NetName=NetC5_1 Pin=U1-1
+Added Net: Name=NetC5_1
+Added Pin To Net: NetName=NetC9_1 Pin=C9-1
+Added Pin To Net: NetName=NetC9_1 Pin=R5-2
+Added Pin To Net: NetName=NetC9_1 Pin=U2-1
+Added Net: Name=NetC9_1
+Added Pin To Net: NetName=NetC10_1 Pin=C10-1
+Added Pin To Net: NetName=NetC10_1 Pin=R6-2
+Added Pin To Net: NetName=NetC10_1 Pin=U3-1
+Added Net: Name=NetC10_1
+Added Pin To Net: NetName=NetC11_1 Pin=C11-1
+Added Pin To Net: NetName=NetC11_1 Pin=R7-2
+Added Pin To Net: NetName=NetC11_1 Pin=U4-1
+Added Net: Name=NetC11_1
+Added Pin To Net: NetName=NetC12_2 Pin=C12-2
+Added Pin To Net: NetName=NetC12_2 Pin=D3-1
+Added Pin To Net: NetName=NetC12_2 Pin=RL1-4
+Added Pin To Net: NetName=NetC12_2 Pin=U2-2
+Added Net: Name=NetC12_2
+Added Pin To Net: NetName=NetC13_2 Pin=C13-2
+Added Pin To Net: NetName=NetC13_2 Pin=D4-1
+Added Pin To Net: NetName=NetC13_2 Pin=RL2-4
+Added Pin To Net: NetName=NetC13_2 Pin=U3-2
+Added Net: Name=NetC13_2
+Added Pin To Net: NetName=NetC14_2 Pin=C14-2
+Added Pin To Net: NetName=NetC14_2 Pin=D5-1
+Added Pin To Net: NetName=NetC14_2 Pin=RL3-4
+Added Pin To Net: NetName=NetC14_2 Pin=U4-2
+Added Net: Name=NetC14_2
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=NetD1_2 Pin=P1-1
+Added Net: Name=NetD1_2
+Added Pin To Net: NetName=NetD1_3 Pin=D1-3
+Added Pin To Net: NetName=NetD1_3 Pin=P1-2
+Added Net: Name=NetD1_3
+Added Pin To Net: NetName=NetD2_2 Pin=D2-2
+Added Pin To Net: NetName=NetD2_2 Pin=L2-1
+Added Pin To Net: NetName=NetD2_2 Pin=U1-2
+Added Net: Name=NetD2_2
+Added Pin To Net: NetName=NetLED1_1 Pin=LED1-1
+Added Pin To Net: NetName=NetLED1_1 Pin=R1-2
+Added Net: Name=NetLED1_1
+Added Pin To Net: NetName=NetLED2_2 Pin=LED2-2
+Added Pin To Net: NetName=NetLED2_2 Pin=R2-1
+Added Net: Name=NetLED2_2
+Added Pin To Net: NetName=NetLED3_2 Pin=LED3-2
+Added Pin To Net: NetName=NetLED3_2 Pin=R3-1
+Added Net: Name=NetLED3_2
+Added Pin To Net: NetName=NetLED4_2 Pin=LED4-2
+Added Pin To Net: NetName=NetLED4_2 Pin=R4-1
+Added Net: Name=NetLED4_2
+Added Pin To Net: NetName=NetO1_1 Pin=O1-1
+Added Pin To Net: NetName=NetO1_1 Pin=R2-2
+Added Net: Name=NetO1_1
+Added Pin To Net: NetName=NetO1_3 Pin=O1-3
+Added Pin To Net: NetName=NetO1_3 Pin=R5-1
+Added Net: Name=NetO1_3
+Added Pin To Net: NetName=NetO2_1 Pin=O2-1
+Added Pin To Net: NetName=NetO2_1 Pin=R3-2
+Added Net: Name=NetO2_1
+Added Pin To Net: NetName=NetO2_3 Pin=O2-3
+Added Pin To Net: NetName=NetO2_3 Pin=R6-1
+Added Net: Name=NetO2_3
+Added Pin To Net: NetName=NetO3_1 Pin=O3-1
+Added Pin To Net: NetName=NetO3_1 Pin=R4-2
+Added Net: Name=NetO3_1
+Added Pin To Net: NetName=NetO3_3 Pin=O3-3
+Added Pin To Net: NetName=NetO3_3 Pin=R7-1
+Added Net: Name=NetO3_3
+Added Pin To Net: NetName=NetP3_1 Pin=P3-1
+Added Net: Name=NetP3_1
+Added Pin To Net: NetName=NetP4_1 Pin=P4-1
+Added Pin To Net: NetName=NetP4_1 Pin=RL1-3
+Added Net: Name=NetP4_1
+Added Pin To Net: NetName=NetP4_2 Pin=P4-2
+Added Pin To Net: NetName=NetP4_2 Pin=RL1-1
+Added Net: Name=NetP4_2
+Added Pin To Net: NetName=NetP4_3 Pin=P4-3
+Added Pin To Net: NetName=NetP4_3 Pin=RL1-2
+Added Net: Name=NetP4_3
+Added Pin To Net: NetName=NetP5_1 Pin=P5-1
+Added Pin To Net: NetName=NetP5_1 Pin=RL2-3
+Added Net: Name=NetP5_1
+Added Pin To Net: NetName=NetP5_2 Pin=P5-2
+Added Pin To Net: NetName=NetP5_2 Pin=RL2-1
+Added Net: Name=NetP5_2
+Added Pin To Net: NetName=NetP5_3 Pin=P5-3
+Added Pin To Net: NetName=NetP5_3 Pin=RL2-2
+Added Net: Name=NetP5_3
+Added Pin To Net: NetName=NetP6_1 Pin=P6-1
+Added Pin To Net: NetName=NetP6_1 Pin=RL3-3
+Added Net: Name=NetP6_1
+Added Pin To Net: NetName=NetP6_2 Pin=P6-2
+Added Pin To Net: NetName=NetP6_2 Pin=RL3-1
+Added Net: Name=NetP6_2
+Added Pin To Net: NetName=NetP6_3 Pin=P6-3
+Added Pin To Net: NetName=NetP6_3 Pin=RL3-2
+Added Net: Name=NetP6_3
+Added Pin To Net: NetName=RST Pin=Arduino NANO 1-18
+Added Net: Name=RST
+Added Pin To Net: NetName=VCC Pin=C3-1
+Added Pin To Net: NetName=VCC Pin=F1-1
+Added Pin To Net: NetName=VCC Pin=JDC 1-1
+Added Pin To Net: NetName=VCC Pin=L1-2
+Added Net: Name=VCC
+Added Class: Name=Raspberry_UART_Arduino_Schematic
+Added Room: Name=Raspberry_UART_Arduino_Schematic

@@ -1,0 +1,35 @@
+Added Component: Designator=O4(PC817 DIP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Opto Quang"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mã MH"; Value = "MH000638"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "EL817 DIP4 OPTO (Thay Th? PC817 DIP)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R8(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 220R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Component: Designator=R9(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 10K (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetO4_1 Pin=O4-1
+Added Pin To Net: NetName=GND Pin=O4-2
+Added Pin To Net: NetName=GND Pin=O4-3
+Added Pin To Net: NetName=NetBT1_2 Pin=O4-4
+Added Pin To Net: NetName=NetPI 1_13 Pin=R8-1
+Added Pin To Net: NetName=NetO4_1 Pin=R8-2
+Added Pin To Net: NetName=NetBT1_2 Pin=R9-1
+Added Pin To Net: NetName=NetR9_2 Pin=R9-2
+Added Member To Class: ClassName=Raspberry_UART_Arduino_Schematic Member=Component O4 Opto
+Added Member To Class: ClassName=Raspberry_UART_Arduino_Schematic Member=Component R8 220R
+Added Member To Class: ClassName=Raspberry_UART_Arduino_Schematic Member=Component R9 10K

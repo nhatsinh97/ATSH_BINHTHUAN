@@ -1,0 +1,30 @@
+Change Component DesignItemId : Designator=R5 Old DesignItemId=RES DIP 1/2W 1K New DesignItemId=RES DIP 1/4W 1K
+Change Component DesignItemId : Designator=R6 Old DesignItemId=RES DIP 1/2W 1K New DesignItemId=RES DIP 1/4W 1K
+Change Component DesignItemId : Designator=R7 Old DesignItemId=RES DIP 1/2W 1K New DesignItemId=RES DIP 1/4W 1K
+Change Component Footprint: Designator=R5 Old Footprint=Tro Vach 1/2W New Footprint=Tro Vach 1/4W
+Change Component Footprint: Designator=R6 Old Footprint=Tro Vach 1/2W New Footprint=Tro Vach 1/4W
+Change Component Footprint: Designator=R7 Old Footprint=Tro Vach 1/2W New Footprint=Tro Vach 1/4W
+Change component parameters: Designator = "R5"; Footprint = "Tro Vach 1/4W"; UniqueID = "\ESIASRUT"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 1K (50c)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R6"; Footprint = "Tro Vach 1/4W"; UniqueID = "\UUXXOGUE"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 1K (50c)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R7"; Footprint = "Tro Vach 1/4W"; UniqueID = "\FYOWIIHC"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 1K (50c)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"

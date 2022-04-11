@@ -1,0 +1,5 @@
+DRC Rules Export File for PCB: F:\Projects\22.2.2022_Raspberry_UART_Arduino\Raspberry_UART_Arduino\Raspberry_UART_Arduino_PCB.PcbDoc
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=10.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=7.87
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=11.81
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

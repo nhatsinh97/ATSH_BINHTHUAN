@@ -1,0 +1,29 @@
+﻿Field=#~Integer~#~50|Field=Designator~String~Designator~270|Field=Tên LK~String~Tên LK~193|Field=Quantity~Integer~Quantity~52|Field=Chủng Loại~String~Chủng Loại~100|Field=ĐVT~String~ĐVT~100|Field=Kiểu Chân~String~Kiểu Chân~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~Raspberry_UART_Arduino.PrjPcb|ReportField=ProjectFullPath~F:\Projects\22.2.2022_Raspberry_UART_Arduino\Raspberry_UART_Arduino.PrjPcb|ReportField=Title~Bill of Materials For Project [Raspberry_UART_Arduino.PrjPcb] (No PCB Document Selected)|ReportField=TotalQuantity~58|ReportField=ReportTime~8:56:36 CH|ReportField=ReportDate~4/3/22|ReportField=ReportDateTime~4/3/22 8:56:36 CH|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~4/3/22|ReportField=CurrentTime~8:41:48 CH|ReportField=Date~|ReportField=DocumentFullPathAndName~F:\Projects\22.2.2022_Raspberry_UART_Arduino\Schematic.SchDoc|ReportField=DocumentName~Schematic.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=Idea1~Raspberry giao tiếp UART với Arduino, GPIO có thể reset Arduino|ReportField=Idea2~Arduino điều khiển Relay và xuất hình|ReportField=ImagePath~|ReportField=ModifiedDate~4/3/22|ReportField=Organization~|ReportField=ProjectName~Raspberry_UART_Arduino.PrjPcb|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~1|ReportField=SheetTotal~1|ReportField=Time~|ReportField=Title~Raspberry UART Arduino|ReportField=Version~v1.3|ReportField=DataSourceFileName~Raspberry_UART_Arduino.PrjPcb|ReportField=DataSourceFullPath~F:\Projects\22.2.2022_Raspberry_UART_Arduino\Raspberry_UART_Arduino.PrjPcb|ReportField=PCBDataSourceFileName~PCB.PcbDoc|ReportField=PCBDataSourceFullPath~F:\Projects\22.2.2022_Raspberry_UART_Arduino\PCB.PcbDoc|ReportField=PCBConfigurationName~Sources|ReportField=Item~|ReportField=ItemRevision~|ReportField=ItemAndRevision~|ReportField=ItemRevisionBase~|ReportField=ItemRevisionLevel1~|ReportField=ItemRevisionLevel2~|ReportField=ItemRevisionLevel1AndBase~|ReportField=ItemRevisionLevel2AndLevel1~
+1|H1|Jump Đơn Đực 2.0MM 1x40P Thẳng|1|Connector|Cái|DIP
+2|H2|Jump Đơn Đực 2.0MM 1x40P Thẳng|1|Connector|Cái|DIP
+3|P1, P2, P3|CON 2 KF301-2P 5.08MM Xanh Dương (5 chiếc)|3|Connector|Cái|DIP
+4|P4, P5, P6|CON 3 KF301-3P 5.08MM Xanh Dương|3|Connector|Con|DIP
+5|L1|Cuộn Cảm 100UH 3A LM2576|1|Cuộn Cảm|Con|DIP
+6|L2|Cuộn Cảm 33uH 3A LM2576|1|Cuộn Cảm|Con|DIP
+7|F1|Cầu Chì Tự Phục Hồi 3A 30V DIP RUEF300|1|Cầu chì tự phục hồi|Con|DIP
+8|D1|Diode Cầu 3A 700V KBP307|1|Diode|Con|DIP
+9|D2|1N5822 DO-210AD Diode Schottky 3A 40V (DIP)|1|Diode|Con|DIP
+10|D3, D4, D5|Diode 1N4007 1A (DIP) (10c)|3|Diode|Con|DIP
+11|U1|LM2596S-5.0V BUCK 5V 3A TO263-5|1|IC BUCK|Con|TO263
+12|LED1|Led 3MM Phủ Đỏ (10c)|1|LED|Con|DIP
+13|Relay 1, Relay 2, Relay 3|Led 3MM Phủ Xanh (10c)|3|LED|Con|DIP
+14|Arduino NANO 1|Arduino Nano 3.0 328 Mini CH340|1|Module|Cái|DIP
+15|Raspberry PI 4 - 1|Raspberry Pi 4|1|Module|Cái|DIP
+16|BT2|Nút Nhấn 4 Chân 6x6x9MM DIP|1|Nút nhấn|Con|DIP
+17|O1, O2, O3, O4|EL817 DIP4 OPTO (Thay Thế PC817 DIP)|4|Opto Quang|Con|DIP
+18|RL1, RL2, RL3|Relay 5V10A SRD-05VDC-SL-C Chính Hãng|3|Relay|Con|DIP
+19|U2, U3, U4|C1815 TO92 TRANS NPN 0.15A 50V (DIP) (5c)|3|Trans NPN|Con|DIP
+20|R1, R2, R3, R4|Trở Vạch 1/4W 5% 560R (50c)|4|Trở Vạch|Con|DIP
+21|R11|Trở Vạch 1/4W 5% 100R (50c)|1|Trở Vạch|Con|DIP
+22|R5, R6, R7|Trở Vạch 1/4W 5% 1K (50c)|3|Trở Vạch|Con|DIP
+23|R8|Trở Vạch 1/4W 5% 220R (50c)|1|Trở Vạch|Con|DIP
+24|R9|Trở Vạch 1/4W 5% 10K (50c)|1|Trở Vạch|Con|DIP
+25|C2, C3|Tụ Hóa 470uF 16V 8x11MM|2|Tụ cắm|Con|DIP
+26|C5|Tụ Hóa 220uF 16V 7x11MM|1|Tụ cắm|Con|DIP
+27|C1, C4, C6, C8, C9, C10, C11, C12, C13, C14|Tụ Gốm 104 100nF 50V (10c)|10|Tụ Gốm|Con|DIP
+28|C7|Tụ Hóa 1000uF 16V 8x20MM|1|Tụ hóa|Con|DIP
