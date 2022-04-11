@@ -1,56 +1,36 @@
+/* Chương trình giao tiếp API hiển thi thời gian và phát thông báo */
+#include <Wire.h>
 #include <ESP8266WiFiMulti.h>
-#include <Wire.h>                 //Thư viện giao tiếp I2C
-#include <LiquidCrystal_I2C.h>    //Thư viện LCD
 #include <ESP8266mDNS.h>
-#include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include <WiFiUdp.h>
+#include <LiquidCrystal_I2C.h>
 #include <ESP8266httpUpdate.h>
 #include <ESP8266HTTPClient.h>
-#define D5 14 // GPIO14
-#define D6 12 // GPIO12
-#define D7 13 // GPIO13
+#define D5 14 // GPIO14 thông báo 30 phút
+#define D6 12 // GPIO12 thông báo kết thúc
+#define D7 13 // GPIO13 thông báo on
 #define SERVER_IP "172.17.128.50:8089/api/Farm/getcountdownsecond"
 #ifndef STASSID
 #define STASSID "TOTOLINK N300RH"
 #define STAPSK  ""
-const char* currentVersion = "1.0";
-const char* serverUrl = "http://192.168.32.98/firmware/esp_dongho_update_online.ino.nodemcu.bin";
 const char* ssid = STASSID;
 const char* password = STAPSK;
-int timer_uv = 0;
-int gio = 0;
-int phut = 0;
-int giay = 0;
-int dem = 0;
-int load = 0;
-char a[100] = "OFF";
+int timer_uv = 0, gio = 0, phut = 0, giay = 0, dem = 0, load = 0, i = 0, starus = 0;
+char a[100]     = "OFF  ";
 char onn[100]   = "ON   ";
 char yes[100]   = "YES  ";
 char ozone[100] = "OZONE";
 char uv[100]    = "UV   ";
-LiquidCrystal_I2C lcd(0x27, 16, 2); //Thiết lập địa chỉ và loại LCD
 #endif
+LiquidCrystal_I2C lcd(0x27, 16, 2); //Thiết lập địa chỉ và loại LCD
 void setup() {
-  pinMode(D5, OUTPUT);
-  pinMode(D6, OUTPUT);
-  pinMode(D7, OUTPUT);
-  digitalWrite(D5, HIGH);
-  digitalWrite(D6, HIGH);
-  digitalWrite(D7, HIGH);
   Serial.begin(115200);
   Wire.begin(D4, D3);              //Thiết lập chân kết nối I2C (SDA,SCL);
   lcd.init();                      //Khởi tạo LCD
-  lcd.clear();                     //Xóa màn hình
   lcd.backlight();                 //Bật đèn nền
-  lcd.setCursor(2, 0);             //Đặt vị trí ở ô thứ 3 trên dòng 1
-  lcd.print("Welcom to...");          //Ghi đoạn text "Welcom to"
-  lcd.setCursor(0, 1);
-  lcd.print("FARM BINH THUAN");
-  delay(1000); lcd.clear();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
-  lcd.clear();                     //Xóa màn hình
-  lcd.setCursor(0, 0);
   lcd.print("ket noi wifi...");
   while (WiFi.status() != WL_CONNECTED) {
     lcd.setCursor(0, 1);
@@ -100,7 +80,7 @@ void setup() {
   ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("dang nap code");
+    lcd.print("update code");
     lcd.setCursor(0, 1);
     lcd.print("Progress: ");
     //    lcd.setCursor(0, 1);
@@ -116,35 +96,37 @@ void setup() {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Auth Failed");
-    } else if (error == OTA_BEGIN_ERROR) {
+    }
+    else if (error == OTA_BEGIN_ERROR) {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Begin Failed");
-    } else if (error == OTA_CONNECT_ERROR) {
+    }
+    else if (error == OTA_CONNECT_ERROR) {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Connect Failed");
-    } else if (error == OTA_RECEIVE_ERROR) {
+    }
+    else if (error == OTA_RECEIVE_ERROR) {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Receive Failed");
-    } else if (error == OTA_END_ERROR) {
+    }
+    else if (error == OTA_END_ERROR) {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("End Failed");
     }
   });
   ArduinoOTA.begin();
-  lcd.clear();                     //Xóa màn hình
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("IP address: ");
   lcd.setCursor(0, 1);
   lcd.print(WiFi.localIP());
-
-
-
+  pinMode(D5, OUTPUT); pinMode(D6, OUTPUT); pinMode(D7, OUTPUT);
+  digitalWrite(D5, HIGH); digitalWrite(D6, HIGH); digitalWrite(D7, HIGH);
 }
-
 void loop() {
   ArduinoOTA.handle();
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
@@ -154,28 +136,28 @@ void loop() {
   }
   if ((WiFi.status() == WL_CONNECTED)) {
     ArduinoOTA.handle();
-    gio = timer_uv / 3600;
-    phut = timer_uv % 3600 / 60;
-    giay = timer_uv % 3600 % 60;//alarm
+    if ( starus == 1 ) {
+      onuv();
+    }
+    else {
+      offuv();
+    }
     if (timer_uv == 0) {
-      load = 0;
-      delay(1000);
-      ArduinoOTA.handle();
-      delay(10000);
+      lamcham();
       check();
     }
+    gio  = timer_uv / 3600;
+    phut = timer_uv % 3600 / 60;
+    giay = timer_uv % 3600 % 60;
     if (gio == 1) {
-      digitalWrite(D5, HIGH);
-      digitalWrite(D6, HIGH); delay(500);
-      digitalWrite(D7, LOW);
+      starus == 1;
       strcpy(a, ozone);
       lcd.setCursor(8, 0);
       lcd.print(a);
     }
     if (phut > 30) {
-      digitalWrite(D5, HIGH);
-      digitalWrite(D6, HIGH); delay(500);
-      digitalWrite(D7, LOW);
+      starus == 1;
+      onuv();
       strcpy(a, ozone);
       lcd.setCursor(8, 0);
       lcd.print(a);
@@ -186,65 +168,57 @@ void loop() {
       lcd.print(a);
     }
     if (phut == 30) {
-//      digitalWrite(D6, HIGH);
-//      digitalWrite(D7, HIGH); delay(500);
-//      digitalWrite(D5, LOW);
       strcpy(a, yes);
       lcd.setCursor(7, 0);
       lcd.print(a);
     }
     if (timer_uv > 0) {
-
-      lcd.setCursor(0, 0);
-      lcd.print("starus: ");
-      lcd.setCursor(8, 0);
-      lcd.print(a);
-      lcd.setCursor(0, 1);
-      lcd.print("Timer: ");
-      lcd.setCursor(7, 1);
+      lcd.setCursor(0, 0); lcd.print("starus: ");
+      lcd.setCursor(8, 0); lcd.print(a);
+      lcd.setCursor(0, 1); lcd.print("Timer: ");lcd.setCursor(7, 1);
       lcd.print(gio); lcd.print(":");
       lcd.print(phut); lcd.print(":");
-      lcd.print(giay);lcd.print("  ");
-      lcd.setCursor(15, 1);
-      lcd.print(dem);
+      lcd.print(giay); lcd.print("  ");
+      lcd.setCursor(15, 1); lcd.print(dem);
       delay(1000);
       timer_uv--;
-      load++;
-//      if (load == 120){
-//        load = 0;
-//        check();
-//      }
       if ( timer_uv == 0) {
-        digitalWrite(D5, HIGH);
-        digitalWrite(D7, HIGH); delay(500);
-        digitalWrite(D6, LOW);
+        offuv();
       }
-      //lcd.clear();                     //Xóa màn hình
       ArduinoOTA.handle();
     }
   }
 }
+void onuv() {
+  digitalWrite(D5, HIGH);
+  digitalWrite(D6, HIGH);
+  delay(100);
+  digitalWrite(D7, LOW);
+}
+void offuv() {
+  digitalWrite(D5, HIGH);
+  digitalWrite(D7, HIGH);
+  delay(100);
+  digitalWrite(D6, LOW);
+}
+void lamcham() {
+  for (i = 1 ; i <= 59 ; i++) {
+    delay(1000);
+    ArduinoOTA.handle();
+  }
+}
 void check() {
   ArduinoOTA.handle();
-  //lcd.clear();                     //Xóa màn hình
   WiFiClient client;
   HTTPClient http;
-  //lcd.setCursor(0, 0);
-  // configure traged server and url
-  http.begin(client, "http://" SERVER_IP ); //HTTP
+  http.begin(client, "http://" SERVER_IP );
   http.addHeader("Content-Type", "application/json");
-  //lcd.print("starus:");
-  lcd.setCursor(8, 0);
-  lcd.print("     ");
-  lcd.setCursor(8, 0);
-  lcd.print("check");
+  lcd.setCursor(8, 0); lcd.print("     ");
+  lcd.setCursor(8, 0); lcd.print("check");
   int httpCode = http.POST("{\"mac_address\":\"6c:1c:71:5c:9b:31\"}");
   if (httpCode > 0) {
-    lcd.setCursor(8, 0);
-    lcd.print("     ");
-    lcd.setCursor(8, 0);
-    lcd.print(httpCode);
-    delay(500);
+    lcd.setCursor(8, 0); lcd.print("     ");
+    lcd.setCursor(8, 0); lcd.print(httpCode); delay(500);
     if (httpCode == HTTP_CODE_OK) {
       const String& payload = http.getString();
       timer_uv  = payload.toInt (); // Chuyển string thành int
@@ -253,7 +227,7 @@ void check() {
       lcd.setCursor(7, 1);
       lcd.print(gio); lcd.print(":");
       lcd.print(phut); lcd.print(":");
-      lcd.print(giay);lcd.print("  ");
+      lcd.print(giay); lcd.print("  ");
       lcd.setCursor(15, 1);
       lcd.print(dem);
       digitalWrite(D5, HIGH);
