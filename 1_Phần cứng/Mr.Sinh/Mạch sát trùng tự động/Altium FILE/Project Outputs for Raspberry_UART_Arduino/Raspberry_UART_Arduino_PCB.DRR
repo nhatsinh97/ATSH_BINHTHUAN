@@ -1,0 +1,26 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: Raspberry_UART_Arduino_PCB.PcbDoc   24/2/22  7:04:14 CH
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Raspberry_UART_Arduino_PCB.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.3mm)                                             Round             17        PTH        3.61inch (91.78mm)
+T2      24mil (0.599mm)                                           Round             20        PTH        8.29inch (210.48mm)
+T3      28mil (0.701mm)                                           Round             20        PTH        7.18inch (182.32mm)
+T4      32mil (0.8mm)                                             Round             18        PTH        4.69inch (119.15mm)
+T5      35mil (0.889mm)                                           Round             14        PTH        5.57inch (141.39mm)
+T6      35mil (0.899mm)                                           Round             6         PTH        2.51inch (63.77mm)
+T7      39mil (1.001mm)                                           Round             88        PTH        16.82inch (427.23mm)
+T8      43mil (1.1mm)                                             Round             4         PTH        0.63inch (15.90mm)
+T9      45mil (1.143mm)                                           Round             2         PTH        0.45inch (11.43mm)
+T10     47mil (1.199mm)                                           Round             8         PTH        3.49inch (88.54mm)
+T11     59mil (1.501mm)                                           Round             15        PTH        10.08inch (256.08mm)
+T12     63mil (1.6mm)                                             Round             15        PTH        5.56inch (141.30mm)
+T13     118mil (3mm)                                              Round             3         PTH        5.27inch (133.97mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              230
+
+Total Processing Time (hh:mm:ss) : 00:00:00

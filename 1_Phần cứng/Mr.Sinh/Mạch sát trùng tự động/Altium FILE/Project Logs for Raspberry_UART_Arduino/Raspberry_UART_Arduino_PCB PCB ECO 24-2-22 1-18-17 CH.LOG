@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=LED2 NewDesignator=Relay 1
+Change Component Designator: OldDesignator=LED3 NewDesignator=Relay 2
+Change Component Designator: OldDesignator=LED4 NewDesignator=Relay 3
+Change Net Name : Old Net Name=NetLED2_2 New Net Name=NetR2_1
+Change Net Name : Old Net Name=NetLED3_2 New Net Name=NetR3_1
+Change Net Name : Old Net Name=NetLED4_2 New Net Name=NetR4_1

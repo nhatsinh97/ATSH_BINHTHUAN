@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=VCC Pin=JDC 1-1
+Removed Pin From Net: NetName=GND Pin=JDC 1-2
+Removed Member From Class: ClassName=Raspberry_UART_Arduino_Schematic Member=JDC 1

@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=PI 1 Old Footprint=RASPBERRY PI 4 - MOD New Footprint=RASPBERRY PI 4
+Change Component Designator: OldDesignator=PI 1 NewDesignator=Raspberry PI 4 - 1
+Change Net Name : Old Net Name=NetPI 1_13 New Net Name=NetR8_1

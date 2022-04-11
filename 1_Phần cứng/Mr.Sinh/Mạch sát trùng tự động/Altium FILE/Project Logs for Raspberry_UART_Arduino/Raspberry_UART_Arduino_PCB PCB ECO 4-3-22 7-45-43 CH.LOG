@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=NetBT2_2 Pin=R5-1
+Removed Pin From Net: NetName=EN Pin=R5-2
+Removed Pin From Net: NetName=NetO1_3 Pin=R6-1
+Removed Pin From Net: NetName=NetC9_1 Pin=R6-2
+Removed Pin From Net: NetName=NetO2_3 Pin=R7-1
+Removed Pin From Net: NetName=NetC10_1 Pin=R7-2
+Removed Pin From Net: NetName=NetO3_3 Pin=R10-1
+Removed Pin From Net: NetName=NetC11_1 Pin=R10-2
+Removed Member From Class: ClassName=Raspberry_UART_Arduino_Schematic Member=R10
+Added Component: Designator=R11(Tro Vach 1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 100R (50c)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetO1_3 Pin=R5-1
+Added Pin To Net: NetName=NetC9_1 Pin=R5-2
+Added Pin To Net: NetName=NetO2_3 Pin=R6-1
+Added Pin To Net: NetName=NetC10_1 Pin=R6-2
+Added Pin To Net: NetName=NetO3_3 Pin=R7-1
+Added Pin To Net: NetName=NetC11_1 Pin=R7-2
+Added Pin To Net: NetName=NetBT2_2 Pin=R11-1
+Added Pin To Net: NetName=EN Pin=R11-2
+Added Member To Class: ClassName=Raspberry_UART_Arduino_Schematic Member=Component R11 1K

@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=NetArduino NANO 1_30 Pin=LED3-1
+Change Net Name : Old Net Name=NetArduino NANO 1_1 New Net Name=RL3
+Change Net Name : Old Net Name=NetArduino NANO 1_29 New Net Name=RL1
+Change Net Name : Old Net Name=NetArduino NANO 1_30 New Net Name=RL2

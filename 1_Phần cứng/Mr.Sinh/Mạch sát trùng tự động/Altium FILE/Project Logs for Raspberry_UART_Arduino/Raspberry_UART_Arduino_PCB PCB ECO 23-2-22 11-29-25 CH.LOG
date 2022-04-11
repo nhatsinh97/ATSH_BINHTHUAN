@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=NetBT1_2 Pin=R10-1
+Removed Pin From Net: NetName=NetR9_2 Pin=R10-2
+Removed Member From Class: ClassName=Raspberry_UART_Arduino_Schematic Member=R10
+Added Pin To Net: NetName=NetBT1_2 Pin=O4-4
+Added Pin To Net: NetName=NetBT1_2 Pin=R9-1

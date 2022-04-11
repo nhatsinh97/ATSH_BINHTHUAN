@@ -1,0 +1,9 @@
+Change component parameters: Designator = "R11"; Footprint = "Tro Vach 1/4W"; UniqueID = "\RPOMJPOK"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Ch?ng Lo?i"; Value = "Tr?"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ki?u Chân"; Value = "DIP"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Noi Bán"; Value = "banlinhkien.com"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "S? Chân"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tên LK"; Value = "Tr? V?ch 1/4W 5% 100R (50c)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ÐVT"; Value = "Con"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Raspberry_UART_Arduino_Schematic Member=Component R11 1K
