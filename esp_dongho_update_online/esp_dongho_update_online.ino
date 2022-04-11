@@ -126,38 +126,21 @@ void setup() {
   lcd.print(WiFi.localIP());
   pinMode(D5, OUTPUT); pinMode(D6, OUTPUT); pinMode(D7, OUTPUT);
   digitalWrite(D5, HIGH); digitalWrite(D6, HIGH); digitalWrite(D7, HIGH);
+  lcd.setCursor(0, 0); lcd.print("starus: ");
+  lcd.setCursor(0, 1); lcd.print("Timer: ");
 }
 void loop() {
   ArduinoOTA.handle();
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    lcd.print("Failed! Reboot");
-    delay(5000);
-    ESP.restart();
-  }
-  if ((WiFi.status() == WL_CONNECTED)) {
-    ArduinoOTA.handle();
-    if ( starus == 1 ) {
-      onuv();
-    }
-    else {
-      offuv();
-    }
-    if (timer_uv == 0) {
-      lamcham();
-      check();
-    }
-    gio  = timer_uv / 3600;
-    phut = timer_uv % 3600 / 60;
-    giay = timer_uv % 3600 % 60;
+    lcd.clear(); lcd.print("Failed! Reboot");delay(1000); ESP.restart(); }
+  if ((WiFi.status() == WL_CONNECTED)) { ArduinoOTA.handle();
+    if ( starus == 1 ) { onuv();} else { offuv(); }
     if (gio == 1) {
-      starus == 1;
       strcpy(a, ozone);
       lcd.setCursor(8, 0);
       lcd.print(a);
     }
     if (phut > 30) {
-      starus == 1;
-      onuv();
       strcpy(a, ozone);
       lcd.setCursor(8, 0);
       lcd.print(a);
@@ -172,21 +155,17 @@ void loop() {
       lcd.setCursor(7, 0);
       lcd.print(a);
     }
-    if (timer_uv > 0) {
-      lcd.setCursor(0, 0); lcd.print("starus: ");
+    if (timer_uv > 0) {starus == 1;
       lcd.setCursor(8, 0); lcd.print(a);
-      lcd.setCursor(0, 1); lcd.print("Timer: ");lcd.setCursor(7, 1);
+      lcd.setCursor(7, 1);
       lcd.print(gio); lcd.print(":");
       lcd.print(phut); lcd.print(":");
       lcd.print(giay); lcd.print("  ");
-      lcd.setCursor(15, 1); lcd.print(dem);
-      delay(1000);
-      timer_uv--;
-      if ( timer_uv == 0) {
-        offuv();
+      lamcham(); }
+      else{
+        starus == 0;
+        lamcham(); check();
       }
-      ArduinoOTA.handle();
-    }
   }
 }
 void onuv() {
@@ -208,9 +187,7 @@ void lamcham() {
   }
 }
 void check() {
-  ArduinoOTA.handle();
-  WiFiClient client;
-  HTTPClient http;
+  ArduinoOTA.handle(); WiFiClient client; HTTPClient http;
   http.begin(client, "http://" SERVER_IP );
   http.addHeader("Content-Type", "application/json");
   lcd.setCursor(8, 0); lcd.print("     ");
@@ -218,55 +195,17 @@ void check() {
   int httpCode = http.POST("{\"mac_address\":\"6c:1c:71:5c:9b:31\"}");
   if (httpCode > 0) {
     lcd.setCursor(8, 0); lcd.print("     ");
-    lcd.setCursor(8, 0); lcd.print(httpCode); delay(500);
+    lcd.setCursor(8, 0); lcd.print(httpCode); delay(250);
     if (httpCode == HTTP_CODE_OK) {
       const String& payload = http.getString();
       timer_uv  = payload.toInt (); // Chuyển string thành int
-      lcd.setCursor(0, 1);
-      lcd.print("Timer: ");
-      lcd.setCursor(7, 1);
-      lcd.print(gio); lcd.print(":");
-      lcd.print(phut); lcd.print(":");
-      lcd.print(giay); lcd.print("  ");
-      lcd.setCursor(15, 1);
-      lcd.print(dem);
-      digitalWrite(D5, HIGH);
-      digitalWrite(D6, HIGH); delay(500);
-      digitalWrite(D7, HIGH);
-      delay(500);
-      lcd.clear();
-      if (timer_uv == 0) {
-        lcd.print("starus: "); lcd.setCursor(8, 0);
-        lcd.print("off");
-        lcd.setCursor(0, 1);
-        lcd.print("Timer: ");
-        lcd.setCursor(7, 1);
-        lcd.print(gio); lcd.print(":");
-        lcd.print(phut); lcd.print(":");
-        lcd.print(giay);
-        lcd.setCursor(15, 1);
-        lcd.print(dem);
-        delay(500);
-      }
-      if (timer_uv > 0) {
-        dem++; if (dem == 10) {
-          dem = 1;
-        }
-        lcd.print("starus:"); lcd.setCursor(0, 8);
-        lcd.setCursor(0, 1);
-        lcd.print("Timer: ");
-        lcd.setCursor(7, 1);
-        lcd.print(gio); lcd.print(":");
-        lcd.print(phut); lcd.print(":");
-        lcd.print(giay);
-        lcd.setCursor(15, 1);
-        lcd.print(dem);
-        delay(500);
-      }
+      gio  = timer_uv / 3600;
+      phut = timer_uv % 3600 / 60;
+      giay = timer_uv % 3600 % 60;
     }
   } else {
-    lcd.clear();
-    lcd.print("POST... failed");
+    lcd.setCursor(8, 0); lcd.print("      ");
+    lcd.setCursor(8, 0); lcd.print("failed"); delay(250);
     //, error: %s\n", http.errorToString(httpCode).c_str());
   }
   http.end();
