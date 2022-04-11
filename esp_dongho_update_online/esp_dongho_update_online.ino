@@ -126,6 +126,7 @@ void setup() {
   lcd.print(WiFi.localIP());
   pinMode(D5, OUTPUT); pinMode(D6, OUTPUT); pinMode(D7, OUTPUT);
   digitalWrite(D5, HIGH); digitalWrite(D6, HIGH); digitalWrite(D7, HIGH);
+  delay(1000); lcd.clear();
   lcd.setCursor(0, 0); lcd.print("starus: ");
   lcd.setCursor(0, 1); lcd.print("Timer: ");
 }
@@ -161,7 +162,7 @@ void loop() {
       lcd.print(gio); lcd.print(":");
       lcd.print(phut); lcd.print(":");
       lcd.print(giay); lcd.print("  ");
-      lamcham(); }
+      lamcham(); check(); }
       else{
         starus == 0;
         lamcham(); check();
