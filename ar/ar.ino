@@ -4,7 +4,7 @@
 #include <EEPROM.h>
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 /* Start khai báo các biến khi khởi động */
-int nutthucpham = 7, nutvatdung = 8, checkout = A0, thucpham = A1, vatdung = A2, check = 0, uv = 11, ozon = 12;
+int RECEIVE = A3 , nutthucpham = 7, nutvatdung = 8, checkout = A0, thucpham = A1, vatdung = A2, check = 0, uv = 11, ozon = 12;
 unsigned int address = 0; long value; int dem = 0, gio = 0, phut = 0, giay = 0;
 char a[100]       = "ON 60 ";
 char e[100]       = "BACKUP";
@@ -27,7 +27,7 @@ void setup()
   /* Start khai báo các chân I/O input và output */
   pinMode(thucpham, INPUT_PULLUP); pinMode(vatdung, INPUT_PULLUP);
   digitalWrite(thucpham, HIGH)   ; digitalWrite(vatdung, HIGH)   ;
-  pinMode(checkout, INPUT_PULLUP);
+  pinMode(checkout, INPUT_PULLUP); pinMode(RECEIVE, INPUT_PULLUP);
   pinMode(uv, OUTPUT); digitalWrite(uv, LOW);
   pinMode(ozon, OUTPUT); digitalWrite(ozon, LOW);
   pinMode(nutthucpham, OUTPUT); digitalWrite(nutthucpham, LOW);
@@ -51,6 +51,10 @@ void loop()
 
   if (digitalRead(checkout) == 0) {
     Serial.println("checkout"); delay(200);
+    delaycheck;
+  }
+  if (digitalRead(RECEIVE) == 0) {
+    Serial.println("RECEIVE"); delay(200);
     delaycheck;
   }
   //----------------------------------------

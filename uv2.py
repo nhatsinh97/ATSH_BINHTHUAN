@@ -86,8 +86,8 @@ try:
             if file == 200:
                 check = False
                 time.sleep(1)
-        # TH4: Neu check = True add data = HUMAN_DETECT 
-        if not check and (data == "HUMAN_DETECT"):
+        # TH4: Neu check = True add data = RECEIVE 
+        if not check and (data == "RECEIVE"):
             time.sleep(1)
             cap = cv2.VideoCapture(camout)
             retval, img = cap.read()
