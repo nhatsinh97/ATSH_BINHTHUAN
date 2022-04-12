@@ -61,6 +61,18 @@ hik_request = requests.Session()
 hik_request.auth = HTTPDigestAuth(NVR_USR, NVR_PASS)
 hik_request.headers.update(DEFAULT_HEADERS)
 
+
+# define the countdown func.
+def countdown(t):
+    while t > 0:
+        mins, secs = divmod(t, 60)
+        # timeformat = '{:02d}:{:02d}'.format(mins, secs)
+        # print(timeformat, end='\r')
+        time.sleep(1)
+        t -= 1
+        return t
+    return countdown(t-1)
+
 def temperature_of_raspberry_pi():
     cpu_temp = os.popen("vcgencmd measure_temp").readline()
     return cpu_temp.replace("temp=", "")
@@ -80,8 +92,8 @@ def is_valid_image(image):
     s_thr = 0.5
     return s_perc > s_thr
 
-def callHik(start_event=False, parse_string='', status=False, count=0):
-    print("callHik")
+def callHik(start_event=False, parse_string='', status=False, count=0, time_countdown=0):
+    log.info("===START === callHik")
     stream = hik_request.get(urlAlertStream, stream=True, timeout=(5, 60), verify=False)
     if stream.status_code != requests.codes.ok:
         print("Can't connect to the stream!")
@@ -91,6 +103,7 @@ def callHik(start_event=False, parse_string='', status=False, count=0):
         human_detected = False
         # count = 1
         log.info('Connection successful to: ' + NVR_URL)
+
         for line in stream.iter_lines():
             # filter out keep-alive new lines
             if line:
@@ -122,27 +135,39 @@ def callHik(start_event=False, parse_string='', status=False, count=0):
                         postCount = tree.find('{%s}%s' % (XML_NAMESPACE, 'activePostCount'))
 
                         current_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+                        log.info('===INITIAL time_countdown === %d', time_countdown)
+                        while time_countdown:
+                            mins, secs = divmod(time_countdown, 60)
+                            timeformat = '{:02d}:{:02d}'.format(mins, secs)
+                            print(timeformat, end='\r')
+                            time.sleep(1)
+                            time_countdown -= 1
+                            log.info('===UPDATE time_countdown === %d', time_countdown)
+                            if time_countdown <= 0:
+                                return status, 0
+                        log.info('=== eventType.text === %s', str(eventType.text))
+                        if eventType.text == 'VMD':
+                            log.info('=== human_detected === %s', str(human_detected))
+                            log.info('=== eventType.text === %s', str(eventType.text))
                         if not human_detected and eventType.text == 'VMD' and count < 10:
                             stream2 = hik_request.get(urlPicture % int(channelID.text), stream=True, timeout=(5, 60), verify=False)  
                             if stream2.status_code != requests.codes.ok:
                                 print("Can't connect to the stream!")
                                 # raise ValueError('Connection unsuccessful.')
                             else:
-                                # strImg64 = base64.b64encode(stream2.content).decode()
-                                count +=1
+                                strImg64 = base64.b64encode(stream2.content).decode()
                                 r = requests.post(url, data=json.dumps({
                                         "mac_address": mac_address,
                                         "action_name": 'HUMAN_DETECT',
                                         "timer": '',
-                                        "img": stream2.content
+                                        "img": strImg64
                                     }), headers={
                                         'Content-type': 'application/json', 'Accept': 'text/plain'})
                                 file = r.json()
                                 if file == 200:
                                     time.sleep(1)
                                     status = True
-
+                                count +=1
                                 # if strImg64:
                                 #     img = Image.open(BytesIO(stream2.content))
                                 #     imagePath = ('D:\\workspace\\MyCompany\\ATSH_BINHTHUAN\\test%d.jpeg' % count)
@@ -159,7 +184,8 @@ def callHik(start_event=False, parse_string='', status=False, count=0):
                 else:
                     if start_event:
                         parse_string += str_line
-    return status
+    log.info("===END === callHik")
+    return status, 0
 
 
 def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
@@ -254,6 +280,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
             # TH2: Neu Status la True
             # if status:
             #     # va data la 0'
+            log.info("=check=time_countdown=%s", str(time_countdown))
             if status:
                 if data == "0":
                     # print("=====Lenh end============")
@@ -275,11 +302,17 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                         status = False
                         time.sleep(1)
                 # print("=====Count dơn >0 ============", time_countdown)
-                log.info("==time_countdown=%s", str(time_countdown))
+                # if time_countdown <= 0:
+                #     log.info("=check=time_countdown=%s", str(time_countdown))
+                #     break
                 if time_countdown > 0:
                     try:
                         fail_count = 0             
-                        status = callHik(start_event=start_event, parse_string=parse_string, status=status, count=0)
+                        status, time_count = callHik(start_event=start_event, parse_string=parse_string, status=status, count=0, time_countdown=time_countdown)
+                        # log.info("==status==time_count==***%d****==", time_count )
+                        if time_count == 0:
+                            log.info("====BREAK==*******==")
+                            break
                     except (ValueError, requests.exceptions.ConnectionError, requests.exceptions.ChunkedEncodingError) as err:
                         fail_count += 1
                         time.sleep(fail_count * 5)
@@ -309,9 +342,9 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
     except KeyboardInterrupt:
         ser.close()  # Dong Port noi tiep
         # print("có lỗi")
-    except TypeError:
+    except TypeError as error:
         #os.system("sudo reboot")
-        print("có lỗi")
+        log.error(error)
     except AssertionError as error:
         print(error)
     # except:
