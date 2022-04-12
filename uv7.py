@@ -44,7 +44,7 @@ NVR_URL = 'http://192.168.32.205'
 NVR_USR = 'admin'
 NVR_PASS = 'Admin123'
 
-urlAlertStream = NVR_URL + '/ISAPI/Event/notification/p'
+urlAlertStream = NVR_URL + '/ISAPI/Event/notification/alertStream'
 urlPicture = NVR_URL + '/ISAPI/Streaming/channels/%d/picture'
 parse_string = ''
 start_event = False
@@ -275,7 +275,7 @@ def run(model: str, camera_id: str, width: int, height: int, num_threads: int,
                         status = False
                         time.sleep(1)
                 # print("=====Count dơn >0 ============", time_countdown)
-                log.info("==time_countdown=", time_countdown)
+                log.info("==time_countdown=%s", str(time_countdown))
                 if time_countdown > 0:
                     try:
                         fail_count = 0             
