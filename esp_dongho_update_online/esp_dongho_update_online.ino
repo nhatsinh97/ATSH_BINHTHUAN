@@ -127,7 +127,7 @@ void setup() {
   pinMode(D5, OUTPUT); pinMode(D6, OUTPUT); pinMode(D7, OUTPUT);
   digitalWrite(D5, HIGH); digitalWrite(D6, HIGH); digitalWrite(D7, HIGH);
   delay(1000); lcd.clear();
-  lcd.setCursor(0, 0); lcd.print("starus: ");
+  lcd.setCursor(0, 0); lcd.print("status: ");
   lcd.setCursor(0, 1); lcd.print("Timer: ");
 }
 void loop() {
@@ -139,24 +139,34 @@ void loop() {
     if (gio == 1) {
       strcpy(a, ozone);
       lcd.setCursor(8, 0);
+      lcd.print("      ");
+      lcd.setCursor(8, 0);
       lcd.print(a);
     }
     if (phut > 30) {
       strcpy(a, ozone);
+      lcd.setCursor(8, 0);
+      lcd.print("      ");
       lcd.setCursor(8, 0);
       lcd.print(a);
     }
     if (phut > 0 && phut < 30 ) {
       strcpy(a, uv);
       lcd.setCursor(8, 0);
+      lcd.print("      ");
+      lcd.setCursor(8, 0);
       lcd.print(a);
     }
     if (phut == 30) {
       strcpy(a, yes);
-      lcd.setCursor(7, 0);
+      lcd.setCursor(8, 0);
+      lcd.print("      ");
+      lcd.setCursor(8, 0);
       lcd.print(a);
     }
-    if (timer_uv > 0) {starus == 1;
+    if (timer_uv > 0) {starus = 1;
+      lcd.setCursor(8, 0);
+      lcd.print("      ");
       lcd.setCursor(8, 0); lcd.print(a);
       lcd.setCursor(7, 1);
       lcd.print(gio); lcd.print(":");
@@ -164,7 +174,7 @@ void loop() {
       lcd.print(giay); lcd.print("  ");
       lamcham(); check(); }
       else{
-        starus == 0;
+        starus = 0;
         lamcham(); check();
       }
   }
@@ -183,7 +193,13 @@ void offuv() {
 }
 void lamcham() {
   for (i = 1 ; i <= 59 ; i++) {
-    delay(1000);
+    if (i > 9 ){
+      lcd.setCursor(14, 0); lcd.print(i);
+    }else{
+      lcd.setCursor(14, 0); lcd.print(" ");
+      lcd.setCursor(15, 0); lcd.print(i);
+    }
+    delay(900);
     ArduinoOTA.handle();
   }
 }
@@ -203,6 +219,13 @@ void check() {
       gio  = timer_uv / 3600;
       phut = timer_uv % 3600 / 60;
       giay = timer_uv % 3600 % 60;
+      lcd.setCursor(8, 0);
+      lcd.print("      ");
+      lcd.setCursor(8, 0); lcd.print(a);
+      lcd.setCursor(7, 1);
+      lcd.print(gio); lcd.print(":");
+      lcd.print(phut); lcd.print(":");
+      lcd.print(giay); lcd.print("  ");
     }
   } else {
     lcd.setCursor(8, 0); lcd.print("      ");
