@@ -174,6 +174,7 @@ void loop() {
       lcd.print(giay); lcd.print("  ");
       lamcham(); check(); }
       else{
+        strcpy(a, a);
         starus = 0;
         lamcham(); check();
       }
