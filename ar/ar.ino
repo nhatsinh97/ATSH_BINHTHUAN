@@ -51,11 +51,11 @@ void loop()
 
   if (digitalRead(checkout) == 0) {
     Serial.println("checkout"); delay(200);
-    delaycheck;
+    delaycheck();
   }
   if (digitalRead(RECEIVE) == 0) {
     Serial.println("RECEIVE"); delay(200);
-    delaycheck;
+    delaycheck();
   }
   //----------------------------------------
   value = EEPROMReadlong(address);
