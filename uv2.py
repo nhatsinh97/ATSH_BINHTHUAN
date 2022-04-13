@@ -97,7 +97,7 @@ try:
             #___________________________________________
         # TH4: Neu check = True add data = RECEIVE 
         if not check and (data == "RECEIVE"):
-            time.sleep(1)
+            time.sleep(10)
             cap = cv2.VideoCapture(camout)
             retval, img = cap.read()
             strImg64 = base64.b64encode(
