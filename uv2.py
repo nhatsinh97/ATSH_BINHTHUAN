@@ -24,6 +24,7 @@ check = False
 r = requests.post(apitimer, data=json.dumps(
     {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
 data = r.json()
+log.info("==data===api====%s=",data)
 if data > 0:
     status = True
     check = True
@@ -54,6 +55,7 @@ try:
             }), headers={
                 'Content-type': 'application/json', 'Accept': 'text/plain'})
             file = r.json()
+            log.info("==data===start====%s=",file)
             if file == 200:
                 status = True
                 time.sleep(1)
@@ -72,29 +74,33 @@ try:
             }), headers={'Content-type': 'application/json',
                             'Accept': 'text/plain'})
             file = r.json()
+            log.info("==data===end====%s=",file)
             if file == 200:
                 status = False
                 time.sleep(1)
         # TH3: Neu check = True add data = checkout 
-            # if not check and (data == "checkout"):
-            if data == "checkout":
+        # if not check and (data == "checkout"):
+        if data == "checkout":
+            log.info("BẮT ĐẦU GỬI")
+            time.sleep(10)
+            log.info("ĐANG GỬI DATA")
+            cap = cv2.VideoCapture(rtsp)
+            retval, img = cap.read()
+            strImg64 = base64.b64encode(
+                cv2.imencode('.jpg', img)[1]).decode()
+            r = requests.post(url, data=json.dumps({
+                "mac_address": mac_address,
+                "action_name": 'RECEIVE',
+                "timer": '',
+                "img": strImg64
+            }), headers={'Content-type': 'application/json',
+                            'Accept': 'text/plain'})
+            file = r.json()
+            log.info("==data===checkout====%s=",file)
+            if file == 200:
+                check = False
                 time.sleep(1)
-                cap = cv2.VideoCapture(rtsp)
-                retval, img = cap.read()
-                strImg64 = base64.b64encode(
-                    cv2.imencode('.jpg', img)[1]).decode()
-                r = requests.post(url, data=json.dumps({
-                    "mac_address": mac_address,
-                    "action_name": 'RECEIVE',
-                    "timer": '',
-                    "img": strImg64
-                }), headers={'Content-type': 'application/json',
-                                'Accept': 'text/plain'})
-                file = r.json()
-                if file == 200:
-                    check = False
-                    time.sleep(1)
-            #___________________________________________
+        #___________________________________________
         # TH4: Neu check = True add data = RECEIVE 
         if not check and (data == "RECEIVE"):
             time.sleep(10)
@@ -110,6 +116,7 @@ try:
             }), headers={'Content-type': 'application/json',
                             'Accept': 'text/plain'})
             file = r.json()
+            log.info("==data===RECEIVE====%s=",file)
             if file == 200:
                 check = False
                 time.sleep(1)    
