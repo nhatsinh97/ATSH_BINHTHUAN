@@ -86,7 +86,24 @@ try:
             if file == 200:
                 check = False
                 time.sleep(1)
-            
+        # TH4: Neu check = True add data = RECEIVE 
+        if not check and (data == "RECEIVE"):
+            time.sleep(1)
+            cap = cv2.VideoCapture(camout)
+            retval, img = cap.read()
+            strImg64 = base64.b64encode(
+                cv2.imencode('.jpg', img)[1]).decode()
+            r = requests.post(url, data=json.dumps({
+                "mac_address": mac_address,
+                "action_name": 'RECEIVE',
+                "timer": '',
+                "img": strImg64
+            }), headers={'Content-type': 'application/json',
+                            'Accept': 'text/plain'})
+            file = r.json()
+            if file == 200:
+                check = False
+                time.sleep(1)    
 
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
