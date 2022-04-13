@@ -1,4 +1,5 @@
 /* Chương trình điều khiển phòng sát trùng sử dụng Arduino Nano */
+#include <avr/wdt.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
@@ -33,6 +34,7 @@ void setup()
   pinMode(nutthucpham, OUTPUT); digitalWrite(nutthucpham, LOW);
   pinMode(nutvatdung, OUTPUT); digitalWrite(nutvatdung, LOW);
   /* End khai báo các chân I/O input và output */
+  wdt_enable(WDTO_8S);
 }
 void loop()
 {
@@ -51,11 +53,11 @@ void loop()
 
   if (digitalRead(checkout) == 0) {
     Serial.println("checkout"); delay(200);
-    delaycheck;
+    delaycheck();
   }
   if (digitalRead(RECEIVE) == 0) {
     Serial.println("RECEIVE"); delay(200);
-    delaycheck;
+    delaycheck();
   }
   //----------------------------------------
   value = EEPROMReadlong(address);
@@ -101,6 +103,8 @@ void loop()
     Serial.println(gui);
 
   }
+  //infinity loop to hang MCU
+  while (1) {}
 }
 /* Start Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
 void delaycheck() {
@@ -109,6 +113,7 @@ void delaycheck() {
     if (digitalRead(checkout) == 1) {
       break;
     }
+    wdt_reset();
   }
 }
 /* End Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
