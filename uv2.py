@@ -80,7 +80,7 @@ try:
                 time.sleep(1)
         # TH3: Neu check = True add data = checkout 
         # if not check and (data == "checkout"):
-        if data == "checkout":
+        if not status and data == "checkout":
             log.info("BẮT ĐẦU GỬI")
             time.sleep(3)
             log.info("ĐANG GỬI DATA")
