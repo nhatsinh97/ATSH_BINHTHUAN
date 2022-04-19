@@ -82,7 +82,7 @@ try:
         # if not check and (data == "checkout"):
         if data == "checkout":
             log.info("BẮT ĐẦU GỬI")
-            time.sleep(10)
+            time.sleep(3)
             log.info("ĐANG GỬI DATA")
             cap = cv2.VideoCapture(rtsp)
             retval, img = cap.read()
@@ -102,15 +102,15 @@ try:
                 time.sleep(1)
         #___________________________________________
         # TH4: Neu check = True add data = RECEIVE 
-        if not check and (data == "RECEIVE"):
-            time.sleep(10)
-            cap = cv2.VideoCapture(camout)
+        if data == "RECEIVE":
+            # time.sleep(10)
+            cap = cv2.VideoCapture(rtsp)
             retval, img = cap.read()
             strImg64 = base64.b64encode(
                 cv2.imencode('.jpg', img)[1]).decode()
             r = requests.post(url, data=json.dumps({
                 "mac_address": mac_address,
-                "action_name": 'RECEIVE',
+                "action_name": 'HUMAN_DETECT',
                 "timer": '',
                 "img": strImg64
             }), headers={'Content-type': 'application/json',
