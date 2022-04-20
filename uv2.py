@@ -120,7 +120,7 @@ try:
             if file == 200:
                 check = False
                 time.sleep(1)    
-
+            time.sleep(10)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
 # except TypeError:
