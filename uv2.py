@@ -102,7 +102,7 @@ try:
                 time.sleep(1)
         #___________________________________________
         # TH4: Neu check = True add data = RECEIVE 
-        if data == "RECEIVE":
+        if status and data == "RECEIVE":
             # time.sleep(10)
             cap = cv2.VideoCapture(rtsp)
             retval, img = cap.read()
