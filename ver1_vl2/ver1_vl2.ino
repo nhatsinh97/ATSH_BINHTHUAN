@@ -69,16 +69,21 @@ void loop()
         delay(500);
       }
       else  {
-        if ((reset > 1) && (reset < 5)){
+        if ((reset > 1) && (reset < 5)) {
           lcd.backlight();
         }
-        if ((reset > 5) && (reset < 10)){
+        if ((reset > 5) && (reset < 10)) {
           lcd.noBacklight();
         }
-        if ((reset > 10) && (reset < 29)) {
+        if ((reset > 10) && (reset < 25)) { lcd.setCursor(8 , 2); lcd.print("            ");
           strcpy(startus, "Reset "); lcd.setCursor(9 , 2); lcd.print(startus); lcd.setCursor(9 , 3); lcd.print("0");
           lcd.print(":"); lcd.print("0"); lcd.print(":"); lcd.print("0"); lcd.print("    ");
           EEPROMWritelong(address, 0); wdt_reset (); delay(4000); //3600
+        }
+        if ((reset > 25) && (reset < 29)) {
+          strcpy(startus, "test "); lcd.setCursor(9 , 2); lcd.print(startus); lcd.setCursor(9 , 3); lcd.print("0");
+          lcd.print(":"); lcd.print("0"); lcd.print(":"); lcd.print("0"); lcd.print("    ");
+          test();
         }
         reset = 0;
         lcd.setCursor(8 , 2);
@@ -127,36 +132,27 @@ void loop()
   giay = value % 3600 % 60;
   //----------------------------------------
   if (value > 0) {
+    digitalWrite(led, HIGH); strcpy(gui, "90");
     digitalWrite(uv, HIGH);
     lcd.setCursor(9 , 2); lcd.print(startus);
     lcd.setCursor(9 , 3); lcd.print(gio);
-    lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay); lcd.print(" "); 
+    lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay); lcd.print(" ");
     delay(980);
     value--; EEPROMWritelong(address, value); delay(5);
     //----------------------------------------
-    if (gio == 1) {
-      strcpy(gui, "90");
-      digitalWrite(ozon, HIGH);
-    }
-    if (gio == 0) {
-      strcpy(gui, "60");
-    }
-    if (phut > 30) {
-      digitalWrite(ozon, HIGH);
-    }
     if ((gio == 0) && (phut < 30)) {
       digitalWrite(ozon, LOW);
     }
   }
-  //-----------------------------------------
   else {
+    digitalWrite(led, LOW);
     digitalWrite(uv, LOW); strcpy(startus, d); strcpy(gui, "0");
     lcd.setCursor(9 , 2); lcd.print(startus); lcd.print(" ");
     lcd.setCursor(9 , 3); lcd.print(gio);
     lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay);
   }
   dem++;
-  if (dem == 30) {
+  if (dem == 40) {
     wdt_reset ();
     dem = 0;
     Serial.println(gui);
@@ -193,6 +189,30 @@ void delayRECEIVE() {
     if (digitalRead(RECEIVE) == 1) {
       break;
     }
+  }
+}
+void test() {
+  for (check = 1; check <= 300 ; check++) {
+    wdt_reset ();
+    lcd.setCursor(8 , 2);
+    lcd.print("            ");
+    lcd.setCursor(9 , 2);
+    lcd.print("test("); lcd.print(check); lcd.print(")");
+    if ((check > 1) && (check < 60)) {
+      digitalWrite(led, HIGH); digitalWrite(ozon, HIGH); digitalWrite(uv, HIGH);
+    }
+    if ((check > 60) && (check < 299)) {
+      digitalWrite(led, HIGH); digitalWrite(ozon, LOW);
+    }
+    if (check == 300) {
+      digitalWrite(led, LOW); digitalWrite(uv, LOW);
+      lcd.setCursor(9 , 2);
+      lcd.print("          ");
+      lcd.setCursor(9 , 2);
+      lcd.print(startus);
+      EEPROMWritelong(address, 0);
+    }
+    delay(1000);
   }
 }
 /* End Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
