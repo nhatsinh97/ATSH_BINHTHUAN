@@ -102,7 +102,7 @@ try:
                 time.sleep(1)
         #___________________________________________
         # TH4: Neu check = True add data = RECEIVE 
-        if data == "RECEIVE":
+        if status and data == "RECEIVE":
             # time.sleep(10)
             cap = cv2.VideoCapture(rtsp)
             retval, img = cap.read()
@@ -120,7 +120,7 @@ try:
             if file == 200:
                 check = False
                 time.sleep(1)    
-
+            time.sleep(10)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
 # except TypeError:
