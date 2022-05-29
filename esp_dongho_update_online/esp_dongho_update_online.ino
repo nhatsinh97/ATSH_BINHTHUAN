@@ -5,18 +5,19 @@
 #include <ArduinoOTA.h>
 #include <WiFiUdp.h>
 #include <LiquidCrystal_I2C.h>
+#include <BigNumbers_I2C.h>
 #include <ESP8266httpUpdate.h>
 #include <ESP8266HTTPClient.h>
 #define D5 14 // GPIO14 thông báo 30 phút
 #define D6 12 // GPIO12 thông báo kết thúc
 #define D7 13 // GPIO13 thông báo on
-#define SERVER_IP "172.17.128.50:8089/api/Farm/getcountdownsecond"
+#define SERVER_IP "172.17.128.50:58185/api/Farm/getcountdownsecond"  //http://172.17.128.50:58185
 #ifndef STASSID
 #define STASSID "TOTOLINK N300RH"
 #define STAPSK  ""
 const char* ssid = STASSID;
 const char* password = STAPSK;
-int timer_uv = 0, gio = 0, phut = 0, giay = 0, dem = 0, load = 0, i = 0, starus = 0;
+int timer_uv = 0, gio = 0, phut = 0, giay = 0, dem = 0, load = 0, i = 0, starus = 0, big = 0;
 char a[100]     = "OFF  ";
 char onn[100]   = "ON   ";
 char yes[100]   = "YES  ";
@@ -24,9 +25,13 @@ char ozone[100] = "OZONE";
 char uv[100]    = "UV   ";
 #endif
 LiquidCrystal_I2C lcd(0x27, 16, 2); //Thiết lập địa chỉ và loại LCD
+BigNumbers_I2C bigNum(&lcd); // construct BigNumbers_I2C object, passing to it the name of our LCD object
+byte x = 6;//x & y determines position of character on screen
+byte y = 0;
 void setup() {
   Serial.begin(115200);
   Wire.begin(D4, D3);              //Thiết lập chân kết nối I2C (SDA,SCL);
+  bigNum.begin(); // set up BigNumbers
   lcd.init();                      //Khởi tạo LCD
   lcd.backlight();                 //Bật đèn nền
   WiFi.mode(WIFI_STA);
@@ -127,57 +132,67 @@ void setup() {
   pinMode(D5, OUTPUT); pinMode(D6, OUTPUT); pinMode(D7, OUTPUT);
   digitalWrite(D5, HIGH); digitalWrite(D6, HIGH); digitalWrite(D7, HIGH);
   delay(1000); lcd.clear();
-  lcd.setCursor(0, 0); lcd.print("status: ");
-  lcd.setCursor(0, 1); lcd.print("Timer: ");
+  //  lcd.setCursor(0, 0); lcd.print("status: ");
+  //  lcd.setCursor(0, 1); lcd.print("Timer: ");
 }
 void loop() {
   ArduinoOTA.handle();
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    lcd.clear(); lcd.print("Failed! Reboot");delay(1000); ESP.restart(); }
-  if ((WiFi.status() == WL_CONNECTED)) { ArduinoOTA.handle();
-    if ( starus == 1 ) { onuv();} else { offuv(); }
-    if (gio == 1) {
-      strcpy(a, ozone);
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0);
-      lcd.print(a);
+    lcd.clear(); lcd.print("Failed! Reboot"); delay(1000); ESP.restart();
+  }
+  if ((WiFi.status() == WL_CONNECTED)) {
+    ArduinoOTA.handle();
+    if ( starus == 1 ) {
+      onuv();
+    } else {
+      offuv();
     }
-    if (phut > 30) {
-      strcpy(a, ozone);
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0);
-      lcd.print(a);
+    //    if (gio == 1) {
+    //      strcpy(a, ozone);
+    //      lcd.setCursor(8, 0);
+    //      lcd.print("      ");
+    //      lcd.setCursor(8, 0);
+    //      lcd.print(a);
+    //    }
+    //    if (phut > 30) {
+    //      strcpy(a, ozone);
+    //      lcd.setCursor(8, 0);
+    //      lcd.print("      ");
+    //      lcd.setCursor(8, 0);
+    //      lcd.print(a);
+    //    }
+    //    if (phut > 0 && phut < 30 ) {
+    //      strcpy(a, uv);
+    //      lcd.setCursor(8, 0);
+    //      lcd.print("      ");
+    //      lcd.setCursor(8, 0);
+    //      lcd.print(a);
+    //    }
+    //    if (phut == 30) {
+    //      strcpy(a, yes);
+    //      lcd.setCursor(8, 0);
+    //      lcd.print("      ");
+    //      lcd.setCursor(8, 0);
+    //      lcd.print(a);
+    //    }
+    if (timer_uv > 0) {
+      starus = 1;
+      bigNum.displayLargeInt(big, x, y, 2, false);
+      lcd.setCursor(12 , 1); lcd.print("."); lcd.print(giay); lcd.print(" ");
+      //      lcd.setCursor(8, 0);
+      //      lcd.print("      ");
+      //      lcd.setCursor(8, 0); lcd.print(a);
+      //      lcd.setCursor(7, 1);
+      //      lcd.print(gio); lcd.print(":");
+      //      lcd.print(phut); lcd.print(":");
+      //      lcd.print(giay); lcd.print("  ");
+      lamcham(); check();
     }
-    if (phut > 0 && phut < 30 ) {
-      strcpy(a, uv);
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0);
-      lcd.print(a);
+    else {
+      //        strcpy(a, a);
+      //        starus = 0;
+      //        lamcham(); check();
     }
-    if (phut == 30) {
-      strcpy(a, yes);
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0);
-      lcd.print(a);
-    }
-    if (timer_uv > 0) {starus = 1;
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0); lcd.print(a);
-      lcd.setCursor(7, 1);
-      lcd.print(gio); lcd.print(":");
-      lcd.print(phut); lcd.print(":");
-      lcd.print(giay); lcd.print("  ");
-      lamcham(); check(); }
-      else{
-        strcpy(a, a);
-        starus = 0;
-        lamcham(); check();
-      }
   }
 }
 void onuv() {
@@ -194,12 +209,13 @@ void offuv() {
 }
 void lamcham() {
   for (i = 1 ; i <= 59 ; i++) {
-    if (i > 9 ){
+    if (i > 9 ) {
       lcd.setCursor(14, 0); lcd.print(i);
-    }else{
+    } else {
       lcd.setCursor(14, 0); lcd.print(" ");
       lcd.setCursor(15, 0); lcd.print(i);
     }
+    Serial.println(i);
     delay(900);
     ArduinoOTA.handle();
   }
@@ -210,27 +226,28 @@ void check() {
   http.addHeader("Content-Type", "application/json");
   lcd.setCursor(8, 0); lcd.print("     ");
   lcd.setCursor(8, 0); lcd.print("check");
-  int httpCode = http.POST("{\"mac_address\":\"6c:1c:71:5c:9b:31\"}");
+  int httpCode = http.POST("{\"mac_address\":\"dc:a6:32:0f:bd:ac\"}");//6c:1c:71:5c:9b:31
   if (httpCode > 0) {
     lcd.setCursor(8, 0); lcd.print("     ");
-    lcd.setCursor(8, 0); lcd.print(httpCode); delay(250);
+    lcd.setCursor(8, 0); lcd.print(httpCode); Serial.print(httpCode); delay(250);
     if (httpCode == HTTP_CODE_OK) {
       const String& payload = http.getString();
       timer_uv  = payload.toInt (); // Chuyển string thành int
+      big  = timer_uv / 60;
       gio  = timer_uv / 3600;
       phut = timer_uv % 3600 / 60;
       giay = timer_uv % 3600 % 60;
-      lcd.setCursor(8, 0);
-      lcd.print("      ");
-      lcd.setCursor(8, 0); lcd.print(a);
-      lcd.setCursor(7, 1);
-      lcd.print(gio); lcd.print(":");
-      lcd.print(phut); lcd.print(":");
-      lcd.print(giay); lcd.print("  ");
+      //      lcd.setCursor(8, 0);
+      //      lcd.print("      ");
+      //      lcd.setCursor(8, 0); lcd.print(a);
+      //      lcd.setCursor(7, 1);
+      //      lcd.print(gio); lcd.print(":");
+      //      lcd.print(phut); lcd.print(":");
+      //      lcd.print(giay); lcd.print("  ");
     }
   } else {
-    lcd.setCursor(8, 0); lcd.print("      ");
-    lcd.setCursor(8, 0); lcd.print("failed"); delay(250);
+    //    lcd.setCursor(8, 0); lcd.print("      ");
+    //    lcd.setCursor(8, 0); lcd.print("failed"); delay(250);
     //, error: %s\n", http.errorToString(httpCode).c_str());
   }
   http.end();
