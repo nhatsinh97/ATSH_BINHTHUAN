@@ -3,7 +3,7 @@
 #include <avr/wdt.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27, 20, 4);
+LiquidCrystal_I2C lcd(0x27, 20, 4); //27
 /* Start khai báo các biến khi khởi động */
 int RECEIVE = A3 , led = 13, checkout = A0, trai = A1, bep = A2, uv = 11, ozon = 12, demmenu = 0;
 unsigned int address = 0; long value ; int dem = 0, gio = 0, phut = 0, giay = 0, check = 0, i = 0, reset = 0;
