@@ -36,6 +36,7 @@ try:
         s = ser.readline()  # Cho doi (timeout) de doc du lieu tu Port noi tiep
         data = s.decode()  # Giai ma chuoi du lieu
         data = data.rstrip()  # Loai bo “\r\n” o cuoi chuoi du lieu
+        print(data)
         log.info("==data===get from MACH DIEN====%s=", data)
         log.info("==status======%s=", str(status))
         # TH1: Neu Status la False va data la 90' hoac 60'
