@@ -7,24 +7,6 @@ import json
 import base64
 import time
 import os
-# from flask import Flask, request
-# app = Flask(__name__)
-
-# @app.route('/api/refresh_service', methods = ['POST'])
-# def refresh_service():
-#     content_type = request.headers.get('Content-Type')
-#     print("=============content_type=", content_type)
-#     print("=============request=", request)
-#     if (content_type == 'application/json'):
-#         # json = request.json
-#         # json = json.encode()
-#         print("=============mac=", request.data.decode())
-#         return request.data.decode()
-#     else:
-#         return request.data.decode()
-#     # print("=============mac=", mac)
-#     # return {'hello': mac}
-#     # return json.dumps({'name': 'ok'})
 time.sleep(5)
 log = logging.getLogger('UV TEST')
 log.addHandler(JournalHandler())
@@ -37,6 +19,7 @@ apitimer = 'http://172.17.128.50:58185/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 timer = '0'
 status = False
+#status = True
 check = False
 # Khai bao chi tiet cac thuoc tinh cua Port noi tiep
 r = requests.post(apitimer, data=json.dumps(
@@ -137,10 +120,10 @@ try:
             file = r.json()
             log.info("==data===RECEIVE====%s=",file)
             if file == 200:
+                # data = ""
                 check = False
                 time.sleep(1)    
             time.sleep(10)
-        # app.run(host='0.0.0.0', port=58888)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
 
