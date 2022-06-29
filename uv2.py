@@ -7,6 +7,24 @@ import json
 import base64
 import time
 import os
+# from flask import Flask, request
+# app = Flask(__name__)
+
+# @app.route('/api/refresh_service', methods = ['POST'])
+# def refresh_service():
+#     content_type = request.headers.get('Content-Type')
+#     print("=============content_type=", content_type)
+#     print("=============request=", request)
+#     if (content_type == 'application/json'):
+#         # json = request.json
+#         # json = json.encode()
+#         print("=============mac=", request.data.decode())
+#         return request.data.decode()
+#     else:
+#         return request.data.decode()
+#     # print("=============mac=", mac)
+#     # return {'hello': mac}
+#     # return json.dumps({'name': 'ok'})
 time.sleep(5)
 log = logging.getLogger('UV TEST')
 log.addHandler(JournalHandler())
@@ -122,8 +140,10 @@ try:
                 check = False
                 time.sleep(1)    
             time.sleep(10)
+        # app.run(host='0.0.0.0', port=58888)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
+
 # except TypeError:
 #     #os.system("sudo reboot")
 #     print("có lỗi")
