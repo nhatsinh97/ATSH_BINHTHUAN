@@ -7,8 +7,8 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4); //3F
 BigNumbers_I2C bigNum(&lcd); // construct BigNumbers_I2C object, passing to it the name of our LCD object
 /* Start khai báo các biến khi khởi động */
-int RECEIVE = A3 , led = 13, checkout = A0, trai = A1, bep = A2, uv = 11, ozon = 12, demmenu = 0;
-unsigned int address = 0; long value = 0 ; int dem = 0, gio = 0, phut = 0, giay = 0, big = 0, check = 0, i = 0, reset = 0;
+int RECEIVE = A3 , led = 13, checkout = A0, trai = A1, bep = A2, uv = 11, ozon = 12;
+long value = 0 ; int dem = 0, gio = 0, phut = 0, giay = 0, big = 0, check = 0, i = 0, reset = 0;
 char b[100]       = "NHA BEP";
 char e[100]       = "Backup ";
 char a[100]       = "NV TRAI";
@@ -24,18 +24,15 @@ byte y = 0;
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial) {
-  }
+//  while (!Serial) {
+//    ResetBoard();
+//  }
   Wire.begin();
   bigNum.begin(); // set up BigNumbers
   lcd.init();
   lcd.backlight();
   lcd.print("  PHONG UV TU DONG"); lcd.setCursor(0 , 2); lcd.print("  Ver: 1.5"); delay(1000); lcd.clear();
-  //  lcd.print("  Farm Lang viet 2"); lcd.setCursor(0 , 1); lcd.print("KV : Cong bao ve");
-  //  lcd.setCursor(0 , 2); lcd.print("Status:"); lcd.setCursor(7 , 2);
-  strcpy(startus, e); //lcd.print(startus);
-  //  lcd.setCursor(0 , 3); lcd.print("Timer :"); //lcd.setCursor(6 , 3);
-  //  lcd.print(gio); lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay); lcd.print("  ");
+  strcpy(startus, e);
   /* Start khai báo các chân I/O input và output */
   pinMode(trai, INPUT_PULLUP); pinMode(bep, INPUT_PULLUP);
   digitalWrite(trai, HIGH)   ; digitalWrite(bep, HIGH)   ;
@@ -45,26 +42,26 @@ void setup()
   pinMode(led, OUTPUT); digitalWrite(led, LOW);
   /* End khai báo các chân I/O input và output */
   wdt_enable(WDTO_8S);
-//  value = EEPROMReadlong(address);
 }
 void loop()
 {
+  while (!Serial) {
+    ResetBoard();
+  }
   wdt_reset ();
   if ((value == 0) && (digitalRead (trai) == 0)) {
-    gui [10] = "60";
-    strcpy(startus, a); lcd.setCursor(9 , 2);
+    strcpy(gui, "60");
+    strcpy(startus, a); lcd.setCursor(9 , 2); Serial.println(gui);
     lcd.print("          "); lcd.setCursor(9 , 2);
     lcd.print(startus);
     value = 3600;
-//    EEPROMWritelong(address, 5400); delay(5); //3600
   }
   if ((value == 0) && (digitalRead (bep) == 0)) {
-    gui [10] = "60";
-    strcpy(startus, b); lcd.setCursor(9 , 2);
+    strcpy(gui, "60");
+    strcpy(startus, b); lcd.setCursor(9 , 2); Serial.println(gui);
     lcd.print("          "); lcd.setCursor(9 , 2);
     lcd.print(startus);
     value = 3600;
-//    EEPROMWritelong(address, 5400); delay(5);
   }
   if ((digitalRead (trai) == 0) && (digitalRead(bep) == 0)) {
     for ( i = 0; i <= 30; i++) {
@@ -96,13 +93,13 @@ void loop()
           wdt_reset (); delay(4000); //3600
         }
         if ((reset > 25) && (reset < 29)) {
-          strcpy(startus, "test "); lcd.setCursor(9 , 2); lcd.print(startus); 
+          strcpy(startus, "test "); lcd.setCursor(9 , 2); lcd.print(startus);
           test();
         }
         reset = 0;
         lcd.setCursor(8 , 2);
         lcd.print("            ");
-        delay(1000);
+        delay(500);
         break;
       }
       if (reset == 30) {
@@ -146,7 +143,6 @@ void loop()
     }
   }
   //----------------------------------------
-//  value = EEPROMReadlong(address);
   big = value / 60;
   gio = value / 3600;
   phut = value % 3600 / 60;
@@ -156,18 +152,13 @@ void loop()
     lcd.setCursor(0 , 1); lcd.print("Timer :");
     bigNum.displayLargeInt(big, x, y, 2, false);
     lcd.setCursor(13 , 1); lcd.print("."); lcd.print(giay); lcd.print(" ");
-    digitalWrite(led, HIGH); strcpy(gui, "90");
-    digitalWrite(uv, HIGH);
+    digitalWrite(led, HIGH); digitalWrite(uv, HIGH);
     lcd.setCursor(0 , 2); lcd.print("Status:");
     lcd.setCursor(9 , 2); lcd.print(startus);
     lcd.setCursor(0 , 3); lcd.print("Vi Tri:");
     lcd.setCursor(7 , 3); lcd.print("Cong Bao Ve");
-    //    lcd.print(":"); lcd.print(phut); lcd.print(":"); lcd.print(giay); lcd.print(" ");
     delay(980); //980
-    value--; 
-//    EEPROMWritelong(address, value); 
-    delay(5);
-    //----------------------------------------
+    value--;
     if (gio == 1) {
       digitalWrite(ozon, HIGH);
     }
@@ -178,7 +169,7 @@ void loop()
       digitalWrite(ozon, LOW);
     }
   }
-  else {
+  if (value == 0) {
     digitalWrite(led, LOW);
     digitalWrite(uv, LOW); strcpy(startus, d); strcpy(gui, "0");
     lcd.setCursor(0 , 1); lcd.print("Timer :");
@@ -190,6 +181,7 @@ void loop()
     lcd.setCursor(7 , 3); lcd.print("Cong Bao Ve");
   }
   dem++;
+  //  Serial.println(dem);
   if (dem == 40) {
     wdt_reset ();
     dem = 0;
@@ -197,32 +189,35 @@ void loop()
 
   }
 }
-//}
 /* Start Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
-void delaycheck() {
+void delaycheck() {              /*  sự kiện mở cữa phòng uv  */
   for (check = 1; check <= 600 ; check++) {
     wdt_reset ();
     lcd.setCursor(9 , 2);
     lcd.print("          ");
     lcd.setCursor(9 , 2);
-    lcd.print("Gui data");
+    //    lcd.print("Gui data");
+    lcd.print("Nhan do ");
     if (digitalRead(checkout) == 0) {
-      delay(500);
+      delay(980); //980
+      value--;
     }
     if (digitalRead(checkout) == 1) {
       break;
     }
   }
 }
-void delayRECEIVE() {
+void delayRECEIVE() {              /*  sự kiện nhận diện chuyển động trong phòng uv  */
   for (check = 1; check <= 600 ; check++) {
     wdt_reset ();
     lcd.setCursor(9 , 2);
     lcd.print("          ");
     lcd.setCursor(9 , 2);
-    lcd.print("Gui data");
+    //    lcd.print("Gui data");
+    lcd.print("Gui vd vao");
     if (digitalRead(RECEIVE) == 0) {
-      delay(500);
+      delay(980); //980
+      value--;
     }
     if (digitalRead(RECEIVE) == 1) {
       break;
@@ -242,7 +237,7 @@ void test() {
     lcd.setCursor(8 , 2);
     lcd.print("            ");
     lcd.setCursor(9 , 2);
-    lcd.print("test");  
+    lcd.print("test");
     if ((check > 1) && (check < 60)) {
       digitalWrite(led, HIGH); digitalWrite(ozon, HIGH); digitalWrite(uv, HIGH);
     }
@@ -256,7 +251,6 @@ void test() {
       lcd.setCursor(9 , 2);
       lcd.print(startus);
       value = 0;
-//      EEPROMWritelong(address, 0);
     }
     delay(1000);
   }
@@ -264,5 +258,5 @@ void test() {
 /* End Chương trình làm chậm khi có sự kiện mở cữa lấy đồ  */
 void ResetBoard()
 {
-  asm volatile ( "jmp 0");  
+  asm volatile ( "jmp 0");
 }

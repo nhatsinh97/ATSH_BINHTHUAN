@@ -1,0 +1,1 @@
+sudo journalctl -f -u python_uv.service

@@ -13,11 +13,16 @@ const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = 25200;
 const int   daylightOffset_sec = 0;
 String gio, phut, giay;
+#include "UART_ARDUINO.h"
+UART Nhan;// nhận
+byte button = 5; //
 void setup()
 {
-  Serial.begin(115200);
+//  Serial.begin(115200);
+  Nhan.begin(115200);// baud: 200 -> 250,000.
   Serial.println("123 go!");
   wifiMulti.addAP("GreenFeed", "2020@GREENFEED");        // Kết nối vào mạng WiFi ở nhà
+  wifiMulti.addAP("baove", "");     // Kết nối vào mạng WiFi ở công ty
   wifiMulti.addAP("TOTOLINK N300RH", "");     // Kết nối vào mạng WiFi ở công ty
   Serial.println("Connecting ...");
   // Chờ kết nối WiFi được thiết lập. Quét tìm mạng WiFi và kết nối với mạng mạnh nhất.
@@ -44,11 +49,20 @@ void setup()
 
 
 }
+char t[2];
 void loop()
-{ ///////////////////boot////////////
-  //  WiFiManager manager;
-  //  updateCounter++;
-  //  if (updateCounter > 150)
+{ 
+  if ( t == "60" ){
+      Serial.println("ok ok ok");
+    }
+  if (Serial.available() > 1) {
+    Nhan.read_string(t, 2);
+    // kết quả : t=="ABCDEF" (đã kiểm tra )
+    // 6 có nghĩa là cỡ của chuỗi gồm 6 chữ cái
+//    Serial.println(t);
+    
+  }
+
   if (gio ==  "18" && phut == "50" && giay == "0")
   {
     //    updateCounter = 0;
@@ -56,9 +70,10 @@ void loop()
     //    update_FOTA();
   }
   /////////////////end boot////////////
-  Serial.print("Ver: ");
+  Serial.println("Ver: ");
   Serial.println(version);
   Serial.print(gio); Serial.print("/"); Serial.print(phut); Serial.print("/"); Serial.println(giay);
+  Serial.println(t);
   printLocalTime();
   delay(500);
 

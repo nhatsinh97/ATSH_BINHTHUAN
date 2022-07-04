@@ -11,7 +11,8 @@
 #define D5 14 // GPIO14 thông báo 30 phút
 #define D6 12 // GPIO12 thông báo kết thúc
 #define D7 13 // GPIO13 thông báo on
-#define SERVER_IP "172.17.128.50:58185/api/Farm/getcountdownsecond"  //http://172.17.128.50:58185
+//#define SERVER_IP "172.17.128.50:58185/api/Farm/getcountdownsecond"
+#define SERVER_IP "172.17.128.50:58185/api/Farm/checkalarm60"
 #ifndef STASSID
 #define STASSID "TOTOLINK N300RH"
 #define STAPSK  ""
@@ -121,23 +122,19 @@ void setup() {
 void loop() {
   ArduinoOTA.handle();
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    lcd.clear(); lcd.print("Failed! Reboot"); delay(1000); ESP.restart();
+    lcd.clear(); lcd.setCursor(0, 0); lcd.print("Mat ket noi"); delay(500); ESP.restart();
   }
   if ((WiFi.status() == WL_CONNECTED)) {
     ArduinoOTA.handle();
+    lcd.setCursor(0, 0); lcd.print("Status:");
+    lcd.setCursor(2, 1); lcd.print(a);
     if ( starus == 1 ) {
       onuv();
     } else {
       offuv();
     }
-    if (timer_uv > 0) {
-      starus = 1;
-      lamcham(); check();
-    }
-    else {
-      starus = 0;
-      lamcham(); check();
-    }
+    lamcham();
+    check();
   }
 }
 void onuv() {
@@ -153,13 +150,16 @@ void offuv() {
   digitalWrite(D6, LOW);
 }
 void lamcham() {
-  for (i = 60 ; i >= 0 ; i--) {
-    big  = timer_uv / 60;
-    gio  = timer_uv / 3600;
-    phut = timer_uv % 3600 / 60;
-    giay = timer_uv % 3600 % 60;
+  for (i = 0 ; i <= 60 ; i++) {
+    //    big  = timer_uv / 60;
+    //    gio  = timer_uv / 3600;
+    //    phut = timer_uv % 3600 / 60;
+    //    giay = timer_uv % 3600 % 60;
     bigNum.displayLargeInt(big, x, y, 2, false);
-    lcd.setCursor(12 , 1); lcd.print("."); lcd.print(i); lcd.print(" ");
+    lcd.setCursor(13 , 1); lcd.print("."); lcd.print(i); lcd.print(" ");
+    if ((starus == 1) && (i == 60)) {
+      big++;
+    }
     Serial.println(i);
     delay(900);
     ArduinoOTA.handle();
@@ -174,9 +174,15 @@ void check() {
     Serial.print(httpCode); delay(250);
     if (httpCode == HTTP_CODE_OK) {
       const String& payload = http.getString();
-      timer_uv  = payload.toInt (); // Chuyển string thành int
-      if (timer_uv  == 0){
+      //      timer_uv  = payload.toInt (); // Chuyển string thành int
+      if (payload  == "No") {
+        big = 0;
+        strcpy(a, "OFF");
         starus = 0;
+      }
+      else {
+        strcpy(a, "ON");
+        starus = 1;
       }
     }
   }
