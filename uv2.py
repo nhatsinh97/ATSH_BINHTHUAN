@@ -14,11 +14,12 @@ log.setLevel(logging.INFO)
 log.info("====BEGIN==== UV ========")
 rtsp = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 camout = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-url = 'http://172.17.128.50:8089/api/Farm/postbiohistory'
-apitimer = 'http://172.17.128.50:8089/api/Farm/getcountdownsecond'
+url = 'http://172.17.128.50:58185/api/Farm/postbiohistory'
+apitimer = 'http://172.17.128.50:58185/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
 timer = '0'
 status = False
+#status = True
 check = False
 # Khai bao chi tiet cac thuoc tinh cua Port noi tiep
 r = requests.post(apitimer, data=json.dumps(
@@ -36,6 +37,7 @@ try:
         s = ser.readline()  # Cho doi (timeout) de doc du lieu tu Port noi tiep
         data = s.decode()  # Giai ma chuoi du lieu
         data = data.rstrip()  # Loai bo “\r\n” o cuoi chuoi du lieu
+        print(data)
         log.info("==data===get from MACH DIEN====%s=", data)
         log.info("==status======%s=", str(status))
         # TH1: Neu Status la False va data la 90' hoac 60'
@@ -118,11 +120,13 @@ try:
             file = r.json()
             log.info("==data===RECEIVE====%s=",file)
             if file == 200:
+                # data = ""
                 check = False
                 time.sleep(1)    
             time.sleep(10)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
+
 # except TypeError:
 #     #os.system("sudo reboot")
 #     print("có lỗi")
