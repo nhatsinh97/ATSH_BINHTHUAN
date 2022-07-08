@@ -14,7 +14,7 @@
 //#define SERVER_IP "172.17.128.50:58185/api/Farm/getcountdownsecond"
 #define SERVER_IP "172.17.128.50:58185/api/Farm/checkalarm60"
 #ifndef STASSID
-#define STASSID "TOTOLINK N300RH"
+#define STASSID "baove"
 #define STAPSK  ""
 const char* ssid = STASSID;
 const char* password = STAPSK;
