@@ -29,8 +29,8 @@ log.info("==data===api====%s=",data)
 if data > 0:
     status = True
     check = True
-    time.sleep(1)
-ser = serial.Serial(port='/dev/ttyS0', baudrate=115200, parity=serial.PARITY_NONE,
+    time.sleep(1) #/dev/ttyS0 /dev/ttyAMA0
+ser = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, parity=serial.PARITY_NONE,
                             stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
 try:
     while True:

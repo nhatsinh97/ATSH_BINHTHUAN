@@ -4,7 +4,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <BigNumbers_I2C.h>
-LiquidCrystal_I2C lcd(0x27, 20, 4); //3F
+LiquidCrystal_I2C lcd(0x3F, 20, 4); //3F
 BigNumbers_I2C bigNum(&lcd); // construct BigNumbers_I2C object, passing to it the name of our LCD object
 /* Start khai báo các biến khi khởi động */
 int RECEIVE = A3 , led = 13, checkout = A0, trai = A1, bep = A2, uv = 11, ozon = 12;
@@ -182,7 +182,7 @@ void loop()
   }
   dem++;
   //  Serial.println(dem);
-  if (dem == 40) {
+  if (dem == 50) {
     wdt_reset ();
     dem = 0;
     Serial.println(gui);
