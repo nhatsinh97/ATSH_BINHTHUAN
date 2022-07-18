@@ -31,7 +31,7 @@ void setup()
   bigNum.begin(); // set up BigNumbers
   lcd.init();
   lcd.backlight();
-  lcd.print("  PHONG UV TU DONG"); lcd.setCursor(0 , 2); lcd.print("  Ver: 1.5"); delay(1000); lcd.clear();
+  lcd.print("  PHONG UV TU DONG"); lcd.setCursor(0 , 2); lcd.print("  Ver: 2.0"); delay(1000); lcd.clear();
   strcpy(startus, e);
   /* Start khai báo các chân I/O input và output */
   pinMode(trai, INPUT_PULLUP); pinMode(bep, INPUT_PULLUP);
