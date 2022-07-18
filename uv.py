@@ -25,6 +25,7 @@ ser = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, parity=serial.PARITY_N
 
 # Khai bao chi tiet cac thuoc tinh cua Port noi tiep
 class getdatatimer:
+    def __init__(self,r = 0,i = 0):
     r = requests.post(apitimer, data=json.dumps( {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
     data = r.json()
     log.info("Dữ liệu Timer từ api: %s",data)
@@ -47,8 +48,6 @@ class postdatastart:
     log.info("==data===start====%s=",file)
     if file == 200:
         status = True
-        time.sleep(1)
-
 class postdataend:
     cap = cv2.VideoCapture(rtsp)
     retval, img = cap.read()
@@ -65,8 +64,6 @@ class postdataend:
     log.info("==data===end====%s=",file)
     if file == 200:
         status = False
-        time.sleep(1)
-
 class postdatacheckout:
     log.info("BẮT ĐẦU GỬI")
     time.sleep(3)
@@ -130,11 +127,11 @@ if __name__=='__main__':
         # TH3: Neu check = True add data = checkout 
         # if not check and (data == "checkout"):
         if not status and data == "checkout":
+            time.sleep(1)
 
         # TH4: Neu check = True add data = RECEIVE 
         if status and data == "RECEIVE":
-
-        time.sleep(2)
+            time.sleep(1)
 except KeyboardInterrupt:
     ser.close()  # Dong Port noi tiep
 
