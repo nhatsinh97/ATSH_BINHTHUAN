@@ -1,0 +1,14 @@
+[Unit]
+Description= atsh
+After=network.target
+StartLimitIntervalSec=5
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/ATSH_BINHTHUAN/uv2.py
+
+[Install]
+WantedBy=multi-user.target
