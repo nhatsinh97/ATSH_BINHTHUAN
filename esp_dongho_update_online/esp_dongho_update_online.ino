@@ -150,11 +150,7 @@ void offuv() {
   digitalWrite(D6, LOW);
 }
 void lamcham() {
-  for (i = 0 ; i <= 60 ; i++) {
-    //    big  = timer_uv / 60;
-    //    gio  = timer_uv / 3600;
-    //    phut = timer_uv % 3600 / 60;
-    //    giay = timer_uv % 3600 % 60;
+  for (i = 0 ; i <= 300 ; i++) {
     bigNum.displayLargeInt(big, x, y, 2, false);
     lcd.setCursor(13 , 1); lcd.print("."); lcd.print(i); lcd.print(" ");
     if ((starus == 1) && (i == 60)) {
@@ -181,7 +177,7 @@ void check() {
         starus = 0;
       }
       else {
-        strcpy(a, "ON");
+        strcpy(a, "ON ");
         starus = 1;
       }
     }
