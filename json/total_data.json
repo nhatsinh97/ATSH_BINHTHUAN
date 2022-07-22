@@ -1,10 +1,10 @@
 {
     "phonguv1": {
-        "status_uv1": "1",
+        "status_uv1": "0",
         "cb_cua1": "0",
-        "gio1": "10",
-        "phut1": "22",
-        "giay1": "54"
+        "gio1": "0",
+        "phut1": "0",
+        "giay1": "0"
     },
     "phonguv2": {
         "status_uv2": "0",

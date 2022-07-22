@@ -25,26 +25,41 @@ try:
                 json.dump(data_uv, out_file, ensure_ascii=False, indent = 4) 
             with open("./json/total_data.json", "r") as fin:
                 databackup = json.load(fin) 
+            
+            phonguv1 = (databackup["phonguv1"])
+            phonguv2 = (databackup["phonguv2"])
+            status_uv1 = (phonguv1["status_uv1"])
+            cb_cua1 = (phonguv1["cb_cua1"])
+            gio1 = (phonguv1["gio1"])
+            phut1 = (phonguv1["phut1"])
+            giay1 = (phonguv1["giay1"])
+            if status_uv1 == "1":
+                cap = cv2.VideoCapture(rtsp)
+                retval, img = cap.read()
+                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
+                r = requests.post(url, data=json.dumps({
+                    "mac_address": "6c:1c:71:5b:6d:19",
+                    "action_name": 'start',
+                    "timer": "90",
+                    "img": strImg64
+                }), headers={
+                    'Content-type': 'application/json', 'Accept': 'text/plain'})
+                file = r.json()
+                print(file)
+            if status_uv1 == "0":
+                cap = cv2.VideoCapture(rtsp)
+                retval, img = cap.read()
+                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
+                r = requests.post(url, data=json.dumps({
+                    "mac_address": "6c:1c:71:5b:6d:19",
+                    "action_name": 'end',
+                    "timer": "90",
+                    "img": strImg64
+                }), headers={
+                    'Content-type': 'application/json', 'Accept': 'text/plain'})
+                file = r.json()
+                print(file)
             return (databackup)
-    def postdata(databackup):
-        phonguv1 = (databackup["phonguv1"])
-        phonguv2 = (databackup["phonguv2"])
-        status_uv1 = (phonguv1["status_uv1"])
-        cb_cua1 = (phonguv1["cb_cua1"])
-        gio1 = (phonguv1["gio1"])
-        phut1 = (phonguv1["phut1"])
-        giay1 = (phonguv1["giay1"])
-        cap = cv2.VideoCapture(rtsp)
-        retval, img = cap.read()
-        strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
-        r = requests.post(url, data=json.dumps({
-            "mac_address": mac_address,
-            "action_name": 'start',
-            "timer": timer,
-            "img": strImg64
-        }), headers={
-            'Content-type': 'application/json', 'Accept': 'text/plain'})
-        file = r.json()
 
 
     app.run(host='0.0.0.0', port=58888)  
