@@ -23,21 +23,22 @@ status = False
 check = False
 # Khai bao chi tiet cac thuoc tinh cua Port noi tiep
 r = requests.post(apitimer, data=json.dumps(
-    {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
+   {"mac_address": mac_address}), headers={'Content-type': 'application/json', 'Accept': 'text/plain'})
 data = r.json()
+# print(data)
 log.info("==data===api====%s=",data)
 if data > 0:
-    status = True
-    check = True
-    time.sleep(1)
-ser = serial.Serial(port='/dev/ttyS0', baudrate=115200, parity=serial.PARITY_NONE,
+   status = True
+   check = True
+   time.sleep(1) #/dev/ttyS0 /dev/ttyAMA0
+ser = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, parity=serial.PARITY_NONE,
                             stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
 try:
     while True:
         s = ser.readline()  # Cho doi (timeout) de doc du lieu tu Port noi tiep
         data = s.decode()  # Giai ma chuoi du lieu
         data = data.rstrip()  # Loai bo “\r\n” o cuoi chuoi du lieu
-        print(data)
+        # print(data)
         log.info("==data===get from MACH DIEN====%s=", data)
         log.info("==status======%s=", str(status))
         # TH1: Neu Status la False va data la 90' hoac 60'

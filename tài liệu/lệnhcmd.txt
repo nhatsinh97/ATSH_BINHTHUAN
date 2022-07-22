@@ -1,1 +1,3 @@
-sudo journalctl -f -u python_uv.service
+sudo journalctl -f -u atsh.service
+sudo journalctl -f -u atsh
+sudo systemctl status atsh.service
