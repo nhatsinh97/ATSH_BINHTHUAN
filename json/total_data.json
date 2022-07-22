@@ -1,10 +1,11 @@
 {
+    "backup": "False",
     "phonguv1": {
-        "status_uv1": "0",
+        "status_uv1": "1",
         "cb_cua1": "0",
-        "gio1": "0",
-        "phut1": "0",
-        "giay1": "0"
+        "gio1": "14",
+        "phut1": "42",
+        "giay1": "54"
     },
     "phonguv2": {
         "status_uv2": "0",

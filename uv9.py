@@ -19,8 +19,14 @@ try:
     def refresh_service():
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
-            # data_uv = request.data.decode()
             data_uv = ast.literal_eval(request.data.decode())
+            backup = (data_uv["backup"])
+            if backup == "True":
+                with open("./json/total_data.json", "r") as fin:
+                    databackup = json.load(fin)
+                print("dã gửi data backup")
+                return (databackup)
+
             with open('./json/total_data.json', 'w', encoding='utf-8') as out_file:
                 json.dump(data_uv, out_file, ensure_ascii=False, indent = 4) 
             with open("./json/total_data.json", "r") as fin:
