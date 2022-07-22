@@ -1,9 +1,10 @@
-import os
-hostname = "http://192.168.32.205" #example
-response = os.system("ping -c 1 " + hostname)
- 
-#and then check the response...
-if response == 0:
-    print (hostname, 'is up!')
+#!/usr/bin/python
+import pyping
+from pyping.core import ping
+
+response = pyping.ping('192.168.32.205')
+
+if response.ret_code == 0:
+    print("reachable")
 else:
-    print (hostname, 'is down!')
+    print("unreachable")

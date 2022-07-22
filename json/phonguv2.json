@@ -1,6 +1,7 @@
 {
-    "status": "False",
-    "timer": "60",
-    "RECEIVE": "False",
-    "HUMAN_DETECT": "False"
+    "status_uv2": "1",
+    "cb_cua2": "0",
+    "gio2": "1",
+    "phut2": "0",
+    "giay2": "54"
 }

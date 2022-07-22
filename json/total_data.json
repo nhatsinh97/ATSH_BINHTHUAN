@@ -1,14 +1,16 @@
 {
     "phonguv1": {
-        "status": "False",
-        "timer": "0",
-        "RECEIVE": "True",
-        "HUMAN_DETECT": "False"
+        "status_uv1": "1",
+        "cb_cua1": "0",
+        "gio1": "10",
+        "phut1": "22",
+        "giay1": "54"
     },
     "phonguv2": {
-        "status": "False",
-        "timer": "60",
-        "RECEIVE": "False",
-        "HUMAN_DETECT": "False"
+        "status_uv2": "0",
+        "cb_cua2": "0",
+        "gio2": "0",
+        "phut2": "0",
+        "giay2": "0"
     }
 }
