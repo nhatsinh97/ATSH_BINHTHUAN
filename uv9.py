@@ -9,15 +9,12 @@ import time
 import os
 from flask import Flask, request
 import ast
-rtsp = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
-cam2 = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
+cam1 = 'rtsp://admin:Admin123@192.168.32.205/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
+cam2 = 'rtsp://admin:Admin123@192.168.32.202/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjM='
 url = 'http://172.17.128.50:58185/api/Farm/postbiohistory'
 apitimer = 'http://172.17.128.50:58185/api/Farm/getcountdownsecond'
 mac_address = "6c:1c:71:5c:9b:31"  # "6c:1c:71:5c:9b:31" #"6c:1c:71:5b:6d:19"
-
 try:
-    stt1 = False
-    stt2 = False
     app = Flask(__name__)
     @app.route('/api/refresh_service', methods = ['POST'])
     def refresh_service():
@@ -31,76 +28,117 @@ try:
                 return (databackup)
             with open('./json/total_data.json', 'w', encoding='utf-8') as out_file:
                 json.dump(data_uv, out_file, ensure_ascii=False, indent = 4) 
+            with open("./json/stt.json", "r") as fin:
+                stt = json.load(fin)
+            stt1 = (stt["stt1"])
+            stt2 = (stt["stt2"])
+            print(stt1)
+            print(stt2)
             with open("./json/total_data.json", "r") as fin:
                 databackup = json.load(fin) 
             phonguv1 = (databackup["phonguv1"])
             phonguv2 = (databackup["phonguv2"])
             status_uv1 = (phonguv1["status_uv1"])
             cb_cua1 = (phonguv1["cb_cua1"])
-            gio1 = (phonguv1["gio1"])
-            phut1 = (phonguv1["phut1"])
-            giay1 = (phonguv1["giay1"])
             status_uv2 = (phonguv2["status_uv2"])
             cb_cua2 = (phonguv2["cb_cua2"])
-            gio2 = (phonguv2["gio2"])
-            phut2 = (phonguv2["phut2"])
-            giay2 = (phonguv2["giay2"])
-            if  status_uv1 == "1":
-                cap = cv2.VideoCapture(rtsp)
+#-------------------------- START XỬ LÝ DATA GỬI LÊN SERVER --------------------------#
+            #--------1: START XỬ LÝ THÔNG TIN PHÒNG UV1 ------------#
+            if stt1 == "False" and  status_uv1 == "1" :
+                cap = cv2.VideoCapture(cam1)
                 retval, img = cap.read()
                 strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
                 r = requests.post(url, data=json.dumps({
-                    "mac_address": "6c:1c:71:5b:6d:19",
-                    "action_name": 'start',
+                    "mac_address": "dc:a6:32:0f:bd:ac",
+                    "action_name": "start",
                     "timer": "90",
                     "img": strImg64
                 }), headers={
                     'Content-type': 'application/json', 'Accept': 'text/plain'})
                 file = r.json()
                 if file == 200:
-                    stt1 = True
-            if  status_uv2 == "1":
-                cap = cv2.VideoCapture(rtsp)
+                    stt1 = "True"
+                    data ={ "stt1": stt1 , "stt2": stt2 }
+                    with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+            if stt1 == "True" and status_uv1 == "0":
+                cap = cv2.VideoCapture(cam1)
+                retval, img = cap.read()
+                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
+                r = requests.post(url, data=json.dumps({
+                    "mac_address": "dc:a6:32:0f:bd:ac",
+                    "action_name": "end",
+                    "timer": "90",
+                    "img": strImg64
+                }), headers={
+                    'Content-type': 'application/json', 'Accept': 'text/plain'})
+                file = r.json()
+                if file == 200:
+                    stt1 = "False"
+                    data = { "stt1": stt1 , "stt2": stt2 }
+                    with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+
+            if cb_cua1 == "1":
+                cap = cv2.VideoCapture(cam1)
+                retval, img = cap.read()
+                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
+                r = requests.post(url, data=json.dumps({
+                "mac_address": "dc:a6:32:0f:bd:ac",
+                "action_name": 'RECEIVE',
+                "timer": '',
+                "img": strImg64
+                }), headers={'Content-type': 'application/json',
+                            'Accept': 'text/plain'})
+                file = r.json()
+            #--------2: XỬ LÝ THÔNG TIN PHÒNG UV2 ------------#
+            if stt2 == "False" and  status_uv2 == "1":
+                cap = cv2.VideoCapture(cam2)
                 retval, img = cap.read()
                 strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
                 r = requests.post(url, data=json.dumps({
                     "mac_address": "dc:a6:32:0f:bd:ad",
-                    "action_name": 'start',
+                    "action_name": "start",
                     "timer": "90",
                     "img": strImg64
                 }), headers={
                     'Content-type': 'application/json', 'Accept': 'text/plain'})
                 file = r.json()
                 if file == 200:
-                    stt2 = True
-            if  status_uv1 == "0":
-                cap = cv2.VideoCapture(rtsp)
-                retval, img = cap.read()
-                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
-                r = requests.post(url, data=json.dumps({
-                    "mac_address": "6c:1c:71:5b:6d:19",
-                    "action_name": 'end',
-                    "timer": "90",
-                    "img": strImg64
-                }), headers={
-                    'Content-type': 'application/json', 'Accept': 'text/plain'})
-                file = r.json()
-                if file == 200:
-                    stt1 = False
-            if  status_uv2 == "0":
-                cap = cv2.VideoCapture(rtsp)
+                    stt2 = "True"
+                    data = { "stt1": stt1 , "stt2": stt2 }
+                    with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+            
+            if stt2 == "True" and  status_uv2 == "0":
+                cap = cv2.VideoCapture(cam2)
                 retval, img = cap.read()
                 strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
                 r = requests.post(url, data=json.dumps({
                     "mac_address": "dc:a6:32:0f:bd:ad",
-                    "action_name": 'end',
+                    "action_name": "end",
                     "timer": "90",
                     "img": strImg64
                 }), headers={
                     'Content-type': 'application/json', 'Accept': 'text/plain'})
                 file = r.json()
                 if file == 200:
-                    stt2 = False
+                    stt2 = "False"
+                    data ={ "stt1": stt1 , "stt2": stt2 }
+                    with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+            if cb_cua2 == "1":
+                cap = cv2.VideoCapture(cam2)
+                retval, img = cap.read()
+                strImg64 = base64.b64encode(cv2.imencode('.jpg', img)[1]).decode()
+                r = requests.post(url, data=json.dumps({
+                "mac_address": "dc:a6:32:0f:bd:ad",
+                "action_name": 'RECEIVE',
+                "timer": '',
+                "img": strImg64
+                }), headers={'Content-type': 'application/json',
+                            'Accept': 'text/plain'})
+                file = r.json()
             return (databackup)
     app.run(host='0.0.0.0', port=58888)  
 except:

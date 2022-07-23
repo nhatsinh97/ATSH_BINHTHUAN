@@ -3,15 +3,15 @@
     "phonguv1": {
         "status_uv1": "1",
         "cb_cua1": "0",
-        "gio1": "17",
-        "phut1": "21",
-        "giay1": "23"
+        "gio1": "11",
+        "phut1": "45",
+        "giay1": "46"
     },
     "phonguv2": {
         "status_uv2": "1",
         "cb_cua2": "0",
-        "gio2": "17",
-        "phut2": "5",
-        "giay2": "50"
+        "gio2": "11",
+        "phut2": "27",
+        "giay2": "37"
     }
 }
