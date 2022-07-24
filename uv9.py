@@ -32,8 +32,6 @@ try:
                 stt = json.load(fin)
             stt1 = (stt["stt1"])
             stt2 = (stt["stt2"])
-            print(stt1)
-            print(stt2)
             with open("./json/total_data.json", "r") as fin:
                 databackup = json.load(fin) 
             phonguv1 = (databackup["phonguv1"])
