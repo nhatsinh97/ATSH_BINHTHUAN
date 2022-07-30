@@ -15,7 +15,7 @@ RTC_DS3231 rtc;
 void update_FOTA();
 char P1[10] = "Backup", P2[10] = "Backup";
 String backup = "False";
-String version = "2.8";
+String version = "2.9";
 String mac_address1 = "dc:a6:32:0f:bd:ac", mac_address2 = "dc:a6:32:0f:bd:ad";
 String key = "37f0d021-9105-4822-8304-fed5b365c89d";
 unsigned long previousMillis = 0;
@@ -171,7 +171,7 @@ void saveParamCallback() {
 }
 void loop() {
   HTTPClient http;
-  http.begin("http://192.168.41.156:58888/api/refresh_service");
+  http.begin("http://192.168.41.146:58888/api/refresh_service");
   http.addHeader("Content-Type", "application/json");
   if (wm_nonblocking) wm.process(); // avoid delays() in loop when non-blocking and other long running code
   checkButton();
@@ -381,7 +381,7 @@ void lcdout() {
 //**** SEND DATA JSON TO RASPBERRY ****//
 void datajson(String backup, String status_uv1, String status_uv2, String gio1, String phut1, String giay1, String gio2, String phut2, String giay2, String cb_cua1, String cb_cua2) {
   HTTPClient http;
-  http.begin("http://192.168.32.218:58888/api/refresh_service");
+  http.begin("http://192.168.41.146:58888/api/refresh_service");
   http.addHeader("Content-Type", "application/json");
   sendRaspberry = "";
   sendRaspberry = "{\"backup\": \"" + String(backup) + "\"," +
