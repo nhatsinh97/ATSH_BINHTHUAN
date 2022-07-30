@@ -1,14 +1,1 @@
-{
-    "phonguv1": {
-        "status": "False",
-        "timer": "0",
-        "RECEIVE": "True",
-        "HUMAN_DETECT": "False"
-    },
-    "phonguv2": {
-        "status": "False",
-        "timer": "60",
-        "RECEIVE": "False",
-        "HUMAN_DETECT": "False"
-    }
-}
+""
