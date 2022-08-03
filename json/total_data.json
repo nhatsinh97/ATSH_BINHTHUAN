@@ -1,17 +1,18 @@
 {
     "backup": "False",
+    "nharuaxe": "False",
     "phonguv1": {
-        "status_uv1": "0",
         "cb_cua1": "0",
+        "giay1": "0",
         "gio1": "0",
         "phut1": "0",
-        "giay1": "0"
+        "status_uv1": "0"
     },
     "phonguv2": {
-        "status_uv2": "1",
         "cb_cua2": "0",
-        "gio2": "12",
-        "phut2": "14",
-        "giay2": "52"
+        "giay2": "0",
+        "gio2": "0",
+        "phut2": "0",
+        "status_uv2": "0"
     }
 }
