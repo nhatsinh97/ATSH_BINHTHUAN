@@ -4,13 +4,9 @@
    PHIÊN BẢN CHO MAIN ESP32 CÓ 2 KÊNH DAC 0-10V
    6 RELAY
  ************************************************************************/
-#include <esp_task_wdt.h>
-//3 seconds WDT
-#define WDT_TIMEOUT 3
 #include <ArduinoJson.h>
 #include "RTClib.h"
 #include "EEPROM.h"
-//#include <EEPROM.h>
 #include <Wire.h>
 #include <WiFi.h>
 #include <Modbus.h>
@@ -19,18 +15,16 @@
 #include <Adafruit_MCP4725.h>
 LiquidCrystal_I2C lcd(0x27, 20, 4); //3F
 RTC_DS3231 rtc;
+//#include <esp_task_wdt.h>
+//#define WDT_TIMEOUT 3
 char P1[10] = "Backup", P2[10] = "Backup";
 unsigned long previousMillis = 0;
 const long interval = 1000; // giá trị delay (milliseconds)
-int  timer1, timer2, dem, i;
+int dem, i;
 int gio, phut, giay;
-int giooz1, phutoz1, giayoz1;
-int giooz2, phutoz2, giayoz2;
 Adafruit_MCP4725 dac1;
 Adafruit_MCP4725 dac2;
 String sendRaspberry = "";
-char txt[3000];
-
 int status_uv1, status_uv2;
 int gio1, phut1, giay1;
 int gio2, phut2, giay2;
@@ -41,11 +35,16 @@ int BT_1 = 36, BT_2 = 39, BT_cua1 = 34, BT_cua2 = 4;
 
 #define SerialComputer  Serial
 #define SerialModbus    Serial2
-
 void setup()
 {
-  esp_task_wdt_init(WDT_TIMEOUT, true); //enable panic so ESP32 restarts
-  esp_task_wdt_add(NULL); //add current thread to WDT watch
+//  esp_task_wdt_init(WDT_TIMEOUT, true); //enable panic so ESP32 restarts
+//  esp_task_wdt_add(NULL); //add current thread to WDT watch
+  SerialComputer.begin(9600);
+  SerialModbus.begin(9600);
+  Wire.begin();
+  rtc.begin();
+  lcd.init();
+  lcd.backlight();
   pinMode(BT_1, INPUT_PULLUP);
   pinMode(BT_2, INPUT_PULLUP);
   pinMode(BT_cua1, INPUT_PULLUP);
@@ -63,32 +62,18 @@ void setup()
   digitalWrite(RL_4, LOW);
   digitalWrite(RL_5, LOW);
   digitalWrite(RL_6, LOW);
-  SerialComputer.begin(9600);
-  SerialModbus.begin(9600);
-  if (!EEPROM.begin(1000)) {
-    Serial.println("Failed to initialise EEPROM");
-    Serial.println("Restarting...");
-    delay(1000);
-    ESP.restart();
-  }
-  Wire.begin();
-  rtc.begin();
-  lcd.init();
-  lcd.backlight();
+  
+  
   int address = 0;
   sendRaspberry = EEPROM.readString(address);
-
-
   dac1.begin(0x60);
   dac2.begin(0x61);
   dac1.setVoltage(0, false);
   dac2.setVoltage(0, false);
 
   lcd.print("  PHONG UV TU DONG"); lcd.setCursor(0 , 2); lcd.print("  Ver: 2.0"); delay(1000); lcd.clear();
-  esp_task_wdt_reset();
   StaticJsonDocument<500> doc;
   deserializeJson(doc, sendRaspberry);
-//  serializeJsonPretty(doc, Serial);
   gio1  = doc["phonguv1"]["gio1"];
   phut1 = doc["phonguv1"]["phut1"];
   giay1 = doc["phonguv1"]["giay1"];
@@ -126,11 +111,11 @@ void setup()
   if (status_uv2 == 0){
     strcpy(P2, " OFF  ");
   }
-
 }
+
 void loop()
-{
-  esp_task_wdt_reset();
+{ 
+//  esp_task_wdt_reset();
   unsigned long currentMillis = millis();
   //************************ NÚT NHẤN 1 ******************************//
   if ((status_uv1 == 0) && (digitalRead (BT_1) == 0)) {
@@ -328,7 +313,7 @@ void lcdout() {
   lcd.setCursor(10, 2); lcd.print(gio2);
   lcd.print(":"); lcd.print(phut2); lcd.print(":");
   lcd.print(giay2); lcd.print(" ");
-  esp_task_wdt_reset();
+//  esp_task_wdt_reset();
 }
 //**** SEND DATA JSON TO RASPBERRY ****//
 void datajson(String status_uv1, String status_uv2, String gio1, String phut1, String giay1, String gio2, String phut2, String giay2, String cb_cua1, String cb_cua2) {
