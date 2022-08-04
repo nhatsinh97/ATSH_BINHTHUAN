@@ -28,21 +28,19 @@ try:
                 with open("./json/total_data.json", "r") as fin:
                     databackup = json.load(fin)
                 return (databackup)
-            with open('./json/total_data.json', 'w', encoding='utf-8') as out_file:
-                json.dump(data_uv, out_file, ensure_ascii=False, indent = 4) 
             with open("./json/stt.json", "r") as fin:
                 stt = json.load(fin)
             stt1 = (stt["stt1"])
             stt2 = (stt["stt2"])
-            with open("./json/total_data.json", "r") as fin:
-                databackup = json.load(fin) 
-            phonguv1 = (databackup["phonguv1"])
-            phonguv2 = (databackup["phonguv2"])
-            nharuaxe = (databackup["nharuaxe"])
+            stt_nrx = (stt["stt_nharuaxe"])
+            phonguv1 = (data_uv["phonguv1"])
+            phonguv2 = (data_uv["phonguv2"])
+            nharuaxe = (data_uv["nharuaxe"])
             status_uv1 = (phonguv1["status_uv1"])
             cb_cua1 = (phonguv1["cb_cua1"])
             status_uv2 = (phonguv2["status_uv2"])
             cb_cua2 = (phonguv2["cb_cua2"])
+            
 #-------------------------- START XỬ LÝ DATA GỬI LÊN SERVER --------------------------#
             if nharuaxe == "False":
                 cap = cv2.VideoCapture(cam2)
@@ -57,10 +55,10 @@ try:
                     'Content-type': 'application/json', 'Accept': 'text/plain'})
                 file = r.json()
                 if file == 200:
-                    stt_nharuaxe = "False"
-                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nharuaxe }
+                    stt_nrx = "False"
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
-                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4)
             if nharuaxe == "True":
                 cap = cv2.VideoCapture(cam_ruaxe)
                 retval, img = cap.read()
@@ -74,10 +72,10 @@ try:
                     'Content-type': 'application/json', 'Accept': 'text/plain'})
                 file = r.json()
                 if file == 200:
-                    stt_nharuaxe = "True"
-                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nharuaxe }
+                    stt_nrx = "True"
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
-                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4)
 
             #--------1: START XỬ LÝ THÔNG TIN PHÒNG UV1 ------------#
             if stt1 == "False" and  status_uv1 == "1" :
@@ -94,9 +92,9 @@ try:
                 file = r.json()
                 if file == 200:
                     stt1 = "True"
-                    data ={ "stt1": stt1 , "stt2": stt2 }
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
-                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4)
             if stt1 == "True" and status_uv1 == "0":
                 cap = cv2.VideoCapture(cam1)
                 retval, img = cap.read()
@@ -111,9 +109,9 @@ try:
                 file = r.json()
                 if file == 200:
                     stt1 = "False"
-                    data = { "stt1": stt1 , "stt2": stt2 }
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
-                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4)
 
             if cb_cua1 == "1":
                 cap = cv2.VideoCapture(cam1)
@@ -142,9 +140,9 @@ try:
                 file = r.json()
                 if file == 200:
                     stt2 = "True"
-                    data = { "stt1": stt1 , "stt2": stt2 }
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
-                        json.dump(data, out_file, ensure_ascii=False, indent = 4) 
+                        json.dump(data, out_file, ensure_ascii=False, indent = 4)
             
             if stt2 == "True" and  status_uv2 == "0":
                 cap = cv2.VideoCapture(cam2)
@@ -160,7 +158,7 @@ try:
                 file = r.json()
                 if file == 200:
                     stt2 = "False"
-                    data ={ "stt1": stt1 , "stt2": stt2 }
+                    data ={ "stt1": stt1 , "stt2": stt2, "stt_nharuaxe" : stt_nrx }
                     with open('./json/stt.json', 'w', encoding='utf-8') as out_file:
                         json.dump(data, out_file, ensure_ascii=False, indent = 4) 
             if cb_cua2 == "1":
@@ -175,7 +173,9 @@ try:
                 }), headers={'Content-type': 'application/json',
                             'Accept': 'text/plain'})
                 file = r.json()
-            return (databackup)
+            with open('./json/total_data.json', 'w', encoding='utf-8') as out_file:
+                        json.dump(data_uv, out_file, ensure_ascii=False, indent = 4)
+            return (data_uv)
     app.run(host='0.0.0.0', port=58888)  
 except:
     pass

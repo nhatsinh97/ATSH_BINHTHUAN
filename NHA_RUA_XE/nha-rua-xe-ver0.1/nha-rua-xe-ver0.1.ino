@@ -12,12 +12,13 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4); //3F
 void update_FOTA();
 String backup = "False";
-String version = "2.12";
+String version = "2.11";
 String key = "37f0d021-9105-4822-8304-fed5b365c89d";
+char* server = "http://192.168.32.98:58888/api/refresh_service";
 unsigned long previousMillis = 0;
 const long interval = 1000; // giá trị delay (milliseconds)
 int dem, i;
-char* sendRaspberry = "";
+String sendRaspberry = "";
 int status_uv1, status_uv2;
 int gio1, phut1, giay1;
 int gio2, phut2, giay2;
@@ -32,14 +33,7 @@ bool wm_nonblocking = false;
 WiFiManager wm;
 WiFiManagerParameter custom_field;
 void setup() {
-  pinMode(BT_1, INPUT_PULLUP);    pinMode(BT_2, INPUT_PULLUP);
-  pinMode(BT_cua1, INPUT_PULLUP); pinMode(BT_cua2, INPUT_PULLUP);
-//  pinMode(RL_1, OUTPUT); pinMode(RL_2, OUTPUT);
-//  pinMode(RL_3, OUTPUT); pinMode(RL_4, OUTPUT);
-//  pinMode(RL_5, OUTPUT); pinMode(RL_6, OUTPUT);
-//  digitalWrite(RL_1, LOW); digitalWrite(RL_2, LOW);
-//  digitalWrite(RL_3, LOW); digitalWrite(RL_4, LOW);
-//  digitalWrite(RL_5, LOW); digitalWrite(RL_6, LOW);
+  pinMode(0, INPUT);
   WiFi.mode(WIFI_STA);
   SerialComputer.begin(115200); SerialModbus.begin(115200);
   dac1.begin(0x60); dac2.begin(0x61);
@@ -72,7 +66,7 @@ void setup() {
 }
 void backup_ota() {
   HTTPClient http;
-  http.begin("http://192.168.32.98:58888/api/refresh_service");
+  http.begin(server);
   http.addHeader("Content-Type", "application/json");
   int httpResponseCode = http.POST("{\"backup\":\"True\"}");
   delay(1000);
@@ -91,26 +85,16 @@ void backup_ota() {
     phut2 = doc["phonguv2"]["phut2"];
     giay2 = doc["phonguv2"]["giay2"];
     status_uv2 = doc["phonguv2"]["status_uv2"];
-    if (status_uv1 > 0) {
-      if (status_uv1 == 1) {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        delay(1000);
-      }
-      else {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        
-      }
-    }
-    if (status_uv2 > 0) {
-      if (status_uv2 == 1) {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        delay(1000);
-      }
-      else {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        
-      }
-    }
+//    if (status_uv1 > 0) {
+//      if (status_uv1 == 1) {
+//        datajson(String(backup), String(status_uv1), String(status_uv2), String(gio1), String(phut1), String(giay1), String(gio2), String(phut2), String(giay2), String(cb_cua1), String(cb_cua2));
+//        delay(1000);
+//      }
+//      else {
+//        datajson(String(backup), String(status_uv1), String(status_uv2), String(gio1), String(phut1), String(giay1), String(gio2), String(phut2), String(giay2), String(cb_cua1), String(cb_cua2));
+//        
+//      }
+//    }
   }
   else {
     Serial2.print("Error on sending POST: ");
@@ -119,32 +103,32 @@ void backup_ota() {
   http.end(); lcd.clear();
   update_FOTA();
 }
-void checkButton() {
-  if ( digitalRead(0) == LOW ) {
-    delay(50);
-    if ( digitalRead(0) == LOW ) {
-      Serial2.println("Button Pressed");
-      delay(3000); // reset delay hold
-      if ( digitalRead(0) == LOW ) {
-        Serial2.println("Button Held");
-        Serial2.println("Erasing Config, restarting");
-        wm.resetSettings();
-        ESP.restart();
-      }
-      Serial2.println("Starting config portal");
-      wm.setConfigPortalTimeout(120);
-      if (!wm.startConfigPortal("ATSH-AP", "")) {
-        Serial2.println("failed to connect or hit timeout");
-        delay(3000);
-        // ESP.restart();
-      } else {
-        //if you get here you have connected to the WiFi
-        Serial2.println("connected...yeey :)");
-        backup_ota();
-      }
-    }
-  }
-}
+//void checkButton() {
+//  if ( digitalRead(0) == LOW ) {
+//    delay(50);
+//    if ( digitalRead(0) == LOW ) {
+//      Serial.println("Button Pressed");
+//      delay(3000); // reset delay hold
+//      if ( digitalRead(0) == LOW ) {
+//        Serial.println("Button Held");
+//        Serial.println("Erasing Config, restarting");
+//        wm.resetSettings();
+//        ESP.restart();
+//      }
+//      Serial.println("Starting config portal");
+//      wm.setConfigPortalTimeout(120);
+//      if (!wm.startConfigPortal("ATSH-AP", "")) {
+//        Serial.println("failed to connect or hit timeout");
+//        delay(3000);
+//        // ESP.restart();
+//      } else {
+//        //if you get here you have connected to the WiFi
+//        Serial.println("connected...yeey :)");
+//        backup_ota();
+//      }
+//    }
+//  }
+//}
 String getParam(String name) {
   String value;
   if (wm.server->hasArg(name)) {
@@ -161,67 +145,25 @@ void loop() {
   http.begin("http://192.168.32.98:58888/api/refresh_service");
   http.addHeader("Content-Type", "application/json");
   if (wm_nonblocking) wm.process(); // avoid delays() in loop when non-blocking and other long running code
-  checkButton();
+//  checkButton();
   unsigned long currentMillis = millis();
   //************************ CHẾ ĐỘ SETUP ****************************//
   //************************ NÚT NHẤN 1 ******************************//
-  if ((status_uv1 == 0) && (digitalRead (BT_1) == 0) && (digitalRead (BT_2) == 1)) {
-    delay(150);
-  }
-  if ((status_uv1 == 0) && (digitalRead (BT_1) == 0) && (digitalRead (BT_2) == 1)) {
-    delay(150);
-  }
-  if ((status_uv1 == 0) && (digitalRead (BT_1) == 0) && (digitalRead (BT_2) == 1)) {
-    delay(150);
+  if ( digitalRead(0) == LOW ) {
+    datajson(String(backup), String(status_uv1), String(status_uv2), String(gio1), String(phut1), String(giay1), String(gio2), String(phut2), String(giay2), String(cb_cua1), String(cb_cua2));
+      
+    
   }
 
   //**** START NÚT NHẤN MỞ CỮA PHÒNG UV1 ****//
-  if (digitalRead (BT_cua1) == 0) {
-    cb_cua1 = 1;
-    for (i = 1; i <= 100; i++) {
-      lcd.clear();
-      lcd.setCursor(0 , 0); lcd.print("Chu y: Cua so 2");
-      lcd.setCursor(0 , 1); lcd.print("       dang mo !");
-      lcd.setCursor(9 , 2); lcd.print(i);
-      if (i == 1) {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-      }
-      if (digitalRead (BT_cua1) == 1) {
-        cb_cua1 = 0;
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        lcd.clear();
-        break;
-      }
-      delay(1000);
-    }
-  }
   //**** END NÚT NHẤN PHÒNG UV1 ****//
 
   //**** START NÚT NHẤN MỞ CỮA PHÒNG UV2 ****//
-  if (digitalRead (BT_cua2) == 0) {
-    for (i = 1; i <= 100; i++) {
-      lcd.clear();
-      lcd.setCursor(0 , 0); lcd.print("Chu y: Cua so 1");
-      lcd.setCursor(0 , 1); lcd.print("       dang mo !");
-      lcd.setCursor(9 , 2); lcd.print(i);
-      cb_cua2 = 1;
-      if (i == 1) {
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-      }
-      if (digitalRead (BT_cua2) == 1) {
-        cb_cua2 = 0;
-        datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-        lcd.clear();
-        break;
-      }
-      delay(1000);
-    }
-  }
   //**** END NÚT NHẤN PHÒNG UV2 ****//
 
   if (dem == 60) {
     dem = 0;
-    datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
+    datajson(String(backup), String(status_uv1), String(status_uv2), String(gio1), String(phut1), String(giay1), String(gio2), String(phut2), String(giay2), String(cb_cua1), String(cb_cua2));
     //**** START Nếu phòng UV được bật thì lưu dữ liệu vào eeprom ****//
     int httpResponseCode = http.POST(sendRaspberry);
     delay(1000);
@@ -236,39 +178,27 @@ void loop() {
   }
   //nếu giá trị chưa vượt qua thì không làm gì cả
 }
-//**** START PHÒNG UV 1 ****//
-void off1() {
-  gio1 = 0, phut1 = 0, giay1 = 0, status_uv1 = 0;
-  datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-  ESP.restart();
-}
-//**** END PHÒNG UV1 ****//
-//**** START PHÒNG UV2 ****//
-void off2() {
-  gio2 = 0, phut2 = 0, giay2 = 0, status_uv2 = 0;
-  datajson(char*(backup), char*(status_uv1), char*(status_uv2), char*(gio1), char*(phut1), char*(giay1), char*(gio2), char*(phut2), char*(giay2), char*(cb_cua1), char*(cb_cua2));
-  ESP.restart();
-}
-//**** END PHÒNG UV 2 ****//
 
 //**** SEND DATA JSON TO RASPBERRY ****//
-void datajson(char* backup,char* status_uv1,char* status_uv2,char* gio1,char* phut1,char* giay1,char* gio2,char* phut2,char* giay2,char* cb_cua1,char* cb_cua2) {
+void datajson(String backup, String status_uv1, String status_uv2, String gio1, String phut1, String giay1, String gio2, String phut2, String giay2, String cb_cua1, String cb_cua2) {
   HTTPClient http;
   http.begin("http://192.168.32.98:58888/api/refresh_service");
   http.addHeader("Content-Type", "application/json");
   sendRaspberry = "";
-  sendRaspberry = "{\"backup\": \"" + char(backup) + "\"," +
-                  "\"phonguv1\": { \"status_uv1\":\"" + char(status_uv1) + "\"," +
-                  "\"cb_cua1\": \"" + char(cb_cua1) + "\"," +
-                  "\"gio1\":  \"" + char(gio1)  + "\"," +
-                  "\"phut1\": \"" + char(phut1) + "\"," +
-                  "\"giay1\": \"" + char(giay1) + "\"}" +
+  sendRaspberry = "{\"backup\": \"" + String(backup) + "\"," +
+                  "\"restart\": \"False\"," +
+                  "\"nharuaxe\": \"False\"," +
+                  "\"phonguv1\": { \"status_uv1\":\"" + String(status_uv1) + "\"," +
+                  "\"cb_cua1\": \"" + String(cb_cua1) + "\"," +
+                  "\"gio1\":  \"" + String(gio1)  + "\"," +
+                  "\"phut1\": \"" + String(phut1) + "\"," +
+                  "\"giay1\": \"" + String(giay1) + "\"}" +
                   "," +
-                  "\"phonguv2\": { \"status_uv2\":\"" + char(status_uv2) + "\"," +
-                  "\"cb_cua2\": \"" + char(cb_cua2) + "\"," +
-                  "\"gio2\":  \"" + char(gio2)  + "\"," +
-                  "\"phut2\": \"" + char(phut2) + "\"," +
-                  "\"giay2\": \"" + char(giay2) + "\"}" + "}";
+                  "\"phonguv2\": { \"status_uv2\":\"" + String(status_uv2) + "\"," +
+                  "\"cb_cua2\": \"" + String(cb_cua2) + "\"," +
+                  "\"gio2\":  \"" + String(gio2)  + "\"," +
+                  "\"phut2\": \"" + String(phut2) + "\"," +
+                  "\"giay2\": \"" + String(giay2) + "\"}" + "}";
 
   StaticJsonDocument<500> doc;
   deserializeJson(doc, sendRaspberry);

@@ -1,6 +1,9 @@
 {
     "backup": "False",
-    "nharuaxe": "False",
+    "nharuaxe": {
+        "cb_ra": "False",
+        "cb_vo": "False"
+    },
     "phonguv1": {
         "cb_cua1": "0",
         "giay1": "0",
@@ -14,5 +17,8 @@
         "gio2": "0",
         "phut2": "0",
         "status_uv2": "0"
-    }
+    },
+    "reset_nrx": "False",
+    "reset_uv": "False",
+    "server": "http://192.168.32.98:58888/api/refresh_service"
 }
