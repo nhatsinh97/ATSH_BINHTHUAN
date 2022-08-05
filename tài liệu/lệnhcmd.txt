@@ -1,3 +1,28 @@
 sudo journalctl -f -u atsh.service
 sudo journalctl -f -u atsh
 sudo systemctl status atsh.service
+
+sudo nano /lib/systemd/system/atsh.service
+tạo service :
+[Unit]
+Description= atsh
+After=network.target
+StartLimitIntervalSec=5
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/ATSH_BINHTHUAN/uv2.py
+TimeoutSec=infinity
+
+Lưu thay đổi service :
+sudo systemctl daemon-reload
+
+tự động chạy service :
+sudo systemctl enable atsh.service
+
+khởi chạy service :
+sudo systemctl start atsh.service
+sudo systemctl status atsh.service
